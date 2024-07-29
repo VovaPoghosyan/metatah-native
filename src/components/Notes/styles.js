@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
       maxHeight: 120,
       textAlignVertical: 'top',
       fontSize: 16,
-      color: Colors.ui_light_purple,
+      color: Colors.ui_darker_purple,
   },
 
   inputTitle: {

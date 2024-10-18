@@ -27,7 +27,7 @@ function AboutWelcomeScreen() {
 
 	return (
 		<View style={styles.aboutWelcome}>
-			<Background imageName="bg-top" />
+			<Background  />
 			<View style={styles.content}>
 				<View style={styles.contentText}>
 					<Text style={styles.title}>

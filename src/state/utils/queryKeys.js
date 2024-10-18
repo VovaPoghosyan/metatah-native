@@ -12,4 +12,5 @@ export const queryKeys = {
 		all: ["notes"],
 		byId: (id) => ["notes", id],
 	},
+	statistics: ["statistics"],
 };

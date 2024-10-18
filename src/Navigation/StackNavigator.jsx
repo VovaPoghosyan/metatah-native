@@ -38,12 +38,13 @@ import TermsConditions from "../screens/termsAndPrivacy/termsConditions";
 import PrivacyPolicy from "../screens/termsAndPrivacy/privacyPolicy";
 import NotesScreen from "../screens/notes/NotesScreen";
 import AddOrEditNoteScreen from "../screens/notes/AddOrEditNoteScreen";
+import AnalyticsScreen from "../screens/AnalyticsScreen";
 
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Todo">
+    <Stack.Navigator initialRouteName="Analytics">
         <Stack.Screen name="AboutWelcome" component={AboutWelcomeScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
@@ -80,6 +81,7 @@ const StackNavigator = () => {
         <Stack.Screen name="ChallengeThree" component={ChallengeScreenThree} />
         <Stack.Screen name="TermsConditions" component={TermsConditions} />
         <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
+        <Stack.Screen name="Analytics" component={AnalyticsScreen} />
     </Stack.Navigator>
   );
 };

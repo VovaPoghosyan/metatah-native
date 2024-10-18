@@ -113,7 +113,7 @@ const TodoScreen = () => {
 					textSectionTitleColor: Colors.ui_dark_purple,
 					selectedDayBackgroundColor: Colors.ui_light_green,
 					dayTextColor: Colors.ui_black,
-					dotColor: Colors.ui_light_purple,
+					dotColor: Colors.ui_darker_purple,
 				}}
 				onDayPress={(day) => handleDayPress(day)}
 				items={items}

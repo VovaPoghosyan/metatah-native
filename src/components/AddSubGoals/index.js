@@ -33,7 +33,7 @@ function AddSubGoals({ goals, onDone }) {
                                 onPress={() => onDone(goal.id)}
                                 title={goal.time}
                                 checkedColor={Colors.ui_green}
-                                textColor={Colors.ui_light_purple}
+                                textColor={Colors.ui_darker_purple}
                                 isChecked={goal.done}
                                 minWidth={0}
                                 fontSize={16}

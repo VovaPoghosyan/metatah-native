@@ -18,7 +18,7 @@ function PersonalInfo({ data, onChange }) {
 				<Text
 					style={{
 						...registerStyles.titleBold,
-						marginTop: 24,
+						marginTop: 10,
 					}}>
 					personal information
 				</Text>

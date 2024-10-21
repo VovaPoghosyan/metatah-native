@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
 		borderBottomColor: Colors.ui_purple,
 		fontSize: 20,
 		fontWeight: "600",
-		paddingHorizontal: 12,
+		paddingHorizontal: 8,
 		letterSpacing: 1,
 
 		...Platform.select({

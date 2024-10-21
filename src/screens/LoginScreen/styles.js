@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
 		fontSize: 18,
 		fontWeight: "300",
 		paddingLeft: 0,
-		paddingBottom: 0,
+		paddingBottom: 4,
 	},
 
 	buttonContainer: {

@@ -6,6 +6,42 @@
       "sha1": "4e77868439280fb434d4697c7b911271406c81f3"
     },
     {
+      "path": "src/assets/fonts/antipasto.ttf",
+      "sha1": "71d4b938825e18b5e900eb621d7b89955a7b8a0b"
+    },
+    {
+      "path": "src/assets/fonts/antipasto_bold.ttf",
+      "sha1": "f1d6bbd339343fffa1315e626847bcf9d2334fc2"
+    },
+    {
+      "path": "src/assets/fonts/antipasto_demi_bold.ttf",
+      "sha1": "dc3558051b6ea535a0357d735c72c0ffb8a85243"
+    },
+    {
+      "path": "src/assets/fonts/antipasto_extralight.ttf",
+      "sha1": "fadfe169debb0bdc2306dd9006de099db702d3c9"
+    },
+    {
+      "path": "src/assets/fonts/antipasto_extra_bold.ttf",
+      "sha1": "a862f68cff9347750d48c9625909fbfc1a32fdf7"
+    },
+    {
+      "path": "src/assets/fonts/antipasto_hairline.ttf",
+      "sha1": "c21c31c88aeed4a60d44cfc22772c7da61a6a7a2"
+    },
+    {
+      "path": "src/assets/fonts/antipasto_light.ttf",
+      "sha1": "c7af3725d36ae75fe9ae028b93b82e2355d5e23b"
+    },
+    {
+      "path": "src/assets/fonts/antipasto_medium.ttf",
+      "sha1": "21d1b5751d527b82a314f327cee3cf60615f8399"
+    },
+    {
+      "path": "src/assets/fonts/antipasto_thin.ttf",
+      "sha1": "6cbda7c1dd7c65b701529c0ca329ffb08ead2e8a"
+    },
+    {
       "path": "src/assets/fonts/Entypo.ttf",
       "sha1": "12b5670eb178138f77285d5f2c246d3cc5fa67d6"
     },
@@ -64,42 +100,6 @@
     {
       "path": "src/assets/fonts/Zocial.ttf",
       "sha1": "6a48a962b06cc3acbdfd61df0d9a34744eea5e8d"
-    },
-    {
-      "path": "src/assets/fonts/antipasto.ttf",
-      "sha1": "71d4b938825e18b5e900eb621d7b89955a7b8a0b"
-    },
-    {
-      "path": "src/assets/fonts/antipasto_bold.ttf",
-      "sha1": "f1d6bbd339343fffa1315e626847bcf9d2334fc2"
-    },
-    {
-      "path": "src/assets/fonts/antipasto_demi_bold.ttf",
-      "sha1": "dc3558051b6ea535a0357d735c72c0ffb8a85243"
-    },
-    {
-      "path": "src/assets/fonts/antipasto_extra_bold.ttf",
-      "sha1": "a862f68cff9347750d48c9625909fbfc1a32fdf7"
-    },
-    {
-      "path": "src/assets/fonts/antipasto_extralight.ttf",
-      "sha1": "fadfe169debb0bdc2306dd9006de099db702d3c9"
-    },
-    {
-      "path": "src/assets/fonts/antipasto_hairline.ttf",
-      "sha1": "c21c31c88aeed4a60d44cfc22772c7da61a6a7a2"
-    },
-    {
-      "path": "src/assets/fonts/antipasto_light.ttf",
-      "sha1": "c7af3725d36ae75fe9ae028b93b82e2355d5e23b"
-    },
-    {
-      "path": "src/assets/fonts/antipasto_medium.ttf",
-      "sha1": "21d1b5751d527b82a314f327cee3cf60615f8399"
-    },
-    {
-      "path": "src/assets/fonts/antipasto_thin.ttf",
-      "sha1": "6cbda7c1dd7c65b701529c0ca329ffb08ead2e8a"
     }
   ]
 }

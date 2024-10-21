@@ -21,7 +21,7 @@ const getItemFromStorage = async (key) => {
 const removeItemFromStorage = async (key) => {
 	try {
 		await AsyncStorage.removeItem(key);
-		console.log(`The ${key} successfully remove from async storage!`);
+		console.log(`The ${key} successfully removed from async storage!`);
 	} catch (e) {
 		console.error(`Failed to remove the ${key} from async storage.`);
 	}

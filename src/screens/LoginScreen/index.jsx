@@ -14,6 +14,7 @@ import {
 	storeUserLoginData,
 	clearUserLoginData,
 } from "../../state/async-storage/asyncStorage";
+import { getToken } from "../../state/helpers/auth";
 import Spinner from "react-native-loading-spinner-overlay";
 import RNSTextInput from "../../components/TextInput";
 import globalStyles from "../../assets/globalStyles";
@@ -60,8 +61,20 @@ const LoginScreen = () => {
 		await storeCheckStatus(!remember);
 	};
 
+	const checkToken = async () => {
+		const token = await getToken();
+
+		return token;
+	};
+
 	// useEffect
 	useEffect(() => {
+		const accessToken = checkToken();
+
+		if (accessToken) {
+			navigation.replace("AboutWelcome");
+		}
+
 		const fetchValuesFromStorage = async () => {
 			try {
 				const { email, password } = await getUserLoginData();

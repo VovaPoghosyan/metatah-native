@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { styles } from "./styles";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { Colors } from "../../constants";
 import { Button } from "../../components/Buttons/Button";
 import { CheckBox } from "@rneui/themed";
@@ -61,20 +61,20 @@ const LoginScreen = () => {
 		await storeCheckStatus(!remember);
 	};
 
-	const checkToken = async () => {
-		const token = await getToken();
+	// useFocusEffect
+	useFocusEffect(() => {
+		const checkToken = async () => {
+			const token = await getToken();
+			if (token) {
+				navigation.navigate("AboutWelcome");
+			}
+		};
 
-		return token;
-	};
+		checkToken();
+	});
 
 	// useEffect
 	useEffect(() => {
-		const accessToken = checkToken();
-
-		if (accessToken) {
-			navigation.replace("AboutWelcome");
-		}
-
 		const fetchValuesFromStorage = async () => {
 			try {
 				const { email, password } = await getUserLoginData();

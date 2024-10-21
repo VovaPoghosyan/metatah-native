@@ -44,10 +44,10 @@ const Stack = createStackNavigator();
 
 const StackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Analytics">
-        <Stack.Screen name="AboutWelcome" component={AboutWelcomeScreen} />
+    <Stack.Navigator>
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="AboutWelcome" component={AboutWelcomeScreen} />
         <Stack.Screen name="AboutLearn" component={AboutLearnScreen} />
         <Stack.Screen name="Notes" component={NotesScreen} />
         <Stack.Screen name="AddOrEditNote" component={AddOrEditNoteScreen} />

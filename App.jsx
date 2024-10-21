@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import StackNavigator from "./src/Navigation/StackNavigator";
 import {
 	QueryCache,
 	QueryClient,
 	QueryClientProvider,
 } from "@tanstack/react-query";
+import { getToken } from "./src/state/helpers/auth";
 import { NavigationContainer } from "@react-navigation/native";
 import Toast, { BaseToast, ErrorToast } from "react-native-toast-message";
 import { View, Text, AppState, Platform } from "react-native";
@@ -99,6 +100,9 @@ const toastConfig = {
 };
 
 const App = () => {
+	// useRef
+	const navigationRef = useRef(null);
+
 	// functions
 	function onAppStateChange(status) {
 		if (Platform.OS !== "web") {
@@ -106,6 +110,12 @@ const App = () => {
 			focusManager.setFocused(status === "active");
 		}
 	}
+
+	const checkToken = async () => {
+		const token = await getToken();
+
+		return token;
+	};
 
 	// useEffect
 	useEffect(() => {
@@ -117,10 +127,22 @@ const App = () => {
 		return () => subscription.remove();
 	}, []);
 
+	// constants
+	const publicRoutes = ["Login", "Register"];
+
 	return (
 		<>
 			<FlashMessage position="top" />
-			<NavigationContainer>
+			<NavigationContainer
+				ref={navigationRef}
+				onStateChange={async (state) => {
+					const accessToken = await checkToken();
+					const routeName = state.routes[state.index].name;
+
+					if (!publicRoutes.includes(routeName) && !accessToken) {
+						navigationRef.current?.navigate("Login");
+					}
+				}}>
 				<QueryClientProvider client={queryClient}>
 					{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 					<StackNavigator />

@@ -15,19 +15,21 @@ function AboutWelcomeScreen() {
 		navigation.navigate("AboutLearn");
 	};
 
-	// constants
-	const accessToken = getToken();
-
 	// useEffect
 	useEffect(() => {
-		if (!accessToken) {
-			navigation.navigate("Login");
-		}
-	}, [accessToken]);
+		const checkToken = async () => {
+			const token = await getToken();
+			if (!token) {
+				navigation.navigate("Login");
+			}
+		};
+
+		checkToken();
+	}, [navigation]);
 
 	return (
 		<View style={styles.aboutWelcome}>
-			<Background  />
+			<Background />
 			<View style={styles.content}>
 				<View style={styles.contentText}>
 					<Text style={styles.title}>

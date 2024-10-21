@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
 	},
 
 	textInput: {
-		fontSize: 24,
+		fontSize: 18,
 		fontWeight: "300",
 		paddingLeft: 0,
 	},

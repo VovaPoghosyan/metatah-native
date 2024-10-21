@@ -48,16 +48,16 @@ const RNSTextInput = (props) => {
 				</View>
 			)}
 
-			{Platform.OS === "ios" && (
+			{/* {Platform.OS === "ios" && (
 				<View
 					style={{ height: 0.5, backgroundColor: Colors.ui_white }}
 				/>
-			)}
+			)} */}
 		</View>
 	);
 };
 
-const HEIGHT = 40;
+const HEIGHT = 35;
 
 const styles = StyleSheet.create({
 	Default: {

@@ -55,15 +55,17 @@ const RegisterScreen = () => {
 	// useCameraPermission
 	const { hasPermission, requestPermission } = useCameraPermission();
 
+	useEffect(() => {
+		if (hasPermission === false) {
+			requestPermission();
+		}
+	}, [hasPermission]);
+
 	// useCameraDevice
-	const device = useCameraDevice("front");
+	const device = useCameraDevice("back");
 
 	// useRef
 	const camera = useRef(null);
-
-	if (hasPermission === false) {
-		requestPermission();
-	}
 
 	// functions
 	const onChange = (key, value) => {
@@ -137,6 +139,11 @@ const RegisterScreen = () => {
 		const passwordRegex =
 			/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 
+		if (!data.password.length) {
+			setIsValidPassword(false);
+			setInvalidMessageTitle("please fill in all the fields");
+		}
+
 		if (data.password.length && !passwordRegex.test(data.password)) {
 			setIsValidPassword(false);
 			setInvalidMessageTitle("password should contain");
@@ -158,12 +165,72 @@ const RegisterScreen = () => {
 	};
 
 	const onPressNext = () => {
+		if (activePage === 1) {
+			if (
+				!data.first_name.length ||
+				!data.last_name.length ||
+				!data.email.length ||
+				!data.phone.length
+			) {
+				Toast.show({
+					type: "customErrorToast",
+					text1: "please fill in all the fields",
+					position: "bottom",
+					bottomOffset: 120,
+				});
+				return;
+			}
+		}
+
 		if (activePage === 2) {
 			if (!isValidPassword) {
 				Toast.show({
 					type: "customErrorToast",
 					text1: invalidMessageTitle,
 					text2: invalidMessage,
+					position: "bottom",
+					bottomOffset: 120,
+				});
+
+				return;
+			}
+		}
+
+		if (activePage === 3) {
+			if (!data.profile_picture) {
+				Toast.show({
+					type: "customErrorToast",
+					text1: "profile picture is required",
+					position: "bottom",
+					bottomOffset: 120,
+				});
+
+				return;
+			}
+		}
+
+		if (activePage === 4) {
+			if (
+				!data.role.length ||
+				!data.job_title.length ||
+				!data.company_name.length
+			) {
+				Toast.show({
+					type: "customErrorToast",
+					text1: "please fill in the role, job title, and company name fields",
+					position: "bottom",
+					bottomOffset: 120,
+				});
+
+				return;
+			}
+		}
+
+		if (activePage === 5) {
+			if (!data.timezone.length || !data.language.length) {
+				Toast.show({
+					type: "customErrorToast",
+					text1: "please fill in all the fields",
 					position: "bottom",
 					bottomOffset: 120,
 				});
@@ -254,8 +321,13 @@ const RegisterScreen = () => {
 			navigation.navigate("AboutWelcome");
 			console.log("registered user successfully");
 		},
-		onError: () => {
-			console.error("error register user");
+		onError: (error) => {
+			Toast.show({
+				type: "customErrorToast",
+				text1: `${Object.values(error.response.data.data).join("\n")}`,
+				position: "bottom",
+				bottomOffset: 120,
+			});
 		},
 	});
 
@@ -268,7 +340,7 @@ const RegisterScreen = () => {
 		validatePassword();
 	}, [data.password, data.password_confirmation]);
 
-	if (cameraOpen && device !== null) {
+	if (cameraOpen && hasPermission && device !== null) {
 		return (
 			<>
 				<View

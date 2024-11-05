@@ -28,7 +28,8 @@ export const registerUser = async (payload) => {
 		await setItemInStorage("token", data.data.token);
 		return data;
 	} catch (error) {
-		console.error("Error registering user: ", error);
+		console.error("Error registering user: ", Object.values(error.response.data.data));
+		// alert(`Error: ${Object.values(error.response.data.data)}`);
 		throw error;
 	}
 };

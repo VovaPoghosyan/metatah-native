@@ -128,7 +128,7 @@ const App = () => {
 	}, []);
 
 	// constants
-	const publicRoutes = ["Login", "Register"];
+	const publicRoutes = ["Login", "Register", "TermsConditions", "PrivacyPolicy"];
 
 	return (
 		<>

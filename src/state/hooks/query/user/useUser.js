@@ -6,6 +6,7 @@ export const useUser = (options) => {
   return useQuery({
     queryKey: queryKeys.user,
     queryFn: getUser,
+		retry: 1,
     ...options,
   });
 }

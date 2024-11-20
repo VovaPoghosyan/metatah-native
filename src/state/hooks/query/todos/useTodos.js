@@ -6,6 +6,7 @@ export const useTodos = (options) => {
 	return useQuery({
 		queryKey: queryKeys.todos.all,
 		queryFn: getAllTodos,
+		retry: 1,
 		...options,
 	});
 };

@@ -6,6 +6,7 @@ export const useNotes = (options) => {
 	return useQuery({
 		queryKey: queryKeys.notes.all,
 		queryFn: getAllNotes,
+		retry: 1,
 		...options,
 	});
 };

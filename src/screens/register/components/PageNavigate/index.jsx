@@ -14,7 +14,9 @@ const PageNavigate = ({
 	// formData
 	const formData = new FormData();
 	Object.keys(data).forEach((key) => {
-		formData.append(key, data[key]);
+		if (data[key] !== undefined) {
+			formData.append(key, data[key]);
+		}
 	});
 
 	// functions

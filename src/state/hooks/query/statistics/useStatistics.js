@@ -6,6 +6,7 @@ export const useStatistics = (options) => {
 	return useQuery({
 		queryKey: queryKeys.statistics,
 		queryFn: getStatistics,
+		retry: 1,
 		...options,
 	});
 };

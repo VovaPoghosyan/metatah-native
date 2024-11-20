@@ -1,11 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { createRef, useEffect, useRef, useState } from "react";
 import StackNavigator from "./src/Navigation/StackNavigator";
 import {
+	MutationCache,
 	QueryCache,
 	QueryClient,
 	QueryClientProvider,
 } from "@tanstack/react-query";
-import { getToken } from "./src/state/helpers/auth";
+import { getToken, removeToken } from "./src/state/helpers/auth";
 import { NavigationContainer } from "@react-navigation/native";
 import Toast, { BaseToast, ErrorToast } from "react-native-toast-message";
 import { View, Text, AppState, Platform } from "react-native";
@@ -14,14 +15,30 @@ import { focusManager } from "@tanstack/react-query";
 import { Colors } from "./src/constants";
 import FlashMessage from "react-native-flash-message";
 
+const navigationRef = createRef();
+
+const redirectToLoginPage = (errorMessage) => {
+	if (errorMessage.includes("Unauthenticated")) {
+		removeToken();
+		navigationRef.current?.navigate("Login");
+	}
+};
+
 // queryClient
 const queryClient = new QueryClient({
 	queryCache: new QueryCache({
-		onError: (error) =>
+		onError: (error) => {
+			const errorMessage =
+				error?.response?.data?.message ||
+				error?.message ||
+				"Unknown error";
+
+			redirectToLoginPage(errorMessage);
+
 			Toast.show({
 				type: "error",
-				text1: "Something went wrong",
-				text2: error,
+				text1: "API Error",
+				text2: errorMessage,
 				text1Style: {
 					fontSize: 20,
 					fontWeight: "400",
@@ -32,7 +49,38 @@ const queryClient = new QueryClient({
 					fontWeight: "400",
 					color: Colors.ui_purple,
 				},
-			}),
+			});
+		},
+	}),
+	mutationCache: new MutationCache({
+		onError: (error, _, __, mutation) => {
+			const errorMessage =
+				error?.response?.data?.message ||
+				error?.message ||
+				"Unknown error";
+
+			const { mutationKey } = mutation.options;
+
+			redirectToLoginPage(errorMessage);
+
+			Toast.show({
+				type: "error",
+				text1: `API Mutation Error`,
+				text2: mutationKey
+					? `${mutationKey}: ${errorMessage}`
+					: errorMessage,
+				text1Style: {
+					fontSize: 20,
+					fontWeight: "400",
+					color: Colors.ui_purple,
+				},
+				text2Style: {
+					fontSize: 16,
+					fontWeight: "400",
+					color: Colors.ui_purple,
+				},
+			});
+		},
 	}),
 });
 
@@ -100,9 +148,6 @@ const toastConfig = {
 };
 
 const App = () => {
-	// useRef
-	const navigationRef = useRef(null);
-
 	// functions
 	function onAppStateChange(status) {
 		if (Platform.OS !== "web") {
@@ -128,7 +173,12 @@ const App = () => {
 	}, []);
 
 	// constants
-	const publicRoutes = ["Login", "Register"];
+	const publicRoutes = [
+		"Login",
+		"Register",
+		"TermsConditions",
+		"PrivacyPolicy",
+	];
 
 	return (
 		<>

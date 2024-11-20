@@ -6,6 +6,7 @@ export const useTodo = (options) => {
 	return useQuery({
 		queryKey: queryKeys.todos.byId(options.id),
 		queryFn: () => getTodo(options.id),
+		retry: 1,
 		...options,
 	});
 };

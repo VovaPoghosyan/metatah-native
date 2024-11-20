@@ -6,6 +6,7 @@ export const useGoals = (options) => {
 	return useQuery({
 		queryKey: queryKeys.goals.all,
 		queryFn: getAllGoals,
+		retry: 1,
 		...options,
 	});
 };

@@ -5,7 +5,6 @@ import { styles } from "./styles";
 
 import globalStyles from "../../../assets/globalStyles";
 import Background from "../../../components/Background";
-import FooterMenu from "../../../components/FooterMenu";
 
 const ChallengeScreenThree = () => {
 	// useNavigation
@@ -45,7 +44,6 @@ const ChallengeScreenThree = () => {
 				onPress={() => navigation.navigate("Login")}>
 				<Text style={globalStyles.text}>done</Text>
 			</TouchableOpacity>
-			<FooterMenu />
 		</View>
 	);
 };

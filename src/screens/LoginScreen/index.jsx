@@ -34,7 +34,7 @@ const LoginScreen = () => {
 	// mutation
 	const mutateLoginUser = useLoginUser({
 		onSuccess: () => {
-			navigation.navigate("AboutWelcome");
+			navigation.navigate("Calendar");
 			storeUserLoginData({ email: data.email, password: data.password });
 			console.log("User logged in successfully");
 		},

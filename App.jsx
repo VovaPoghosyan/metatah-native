@@ -1,4 +1,4 @@
-import React, { createRef, useEffect, useRef, useState } from "react";
+import React, { createRef, useEffect, useState } from "react";
 import StackNavigator from "./src/Navigation/StackNavigator";
 import {
 	MutationCache,
@@ -12,8 +12,10 @@ import Toast, { BaseToast, ErrorToast } from "react-native-toast-message";
 import { View, Text, AppState, Platform } from "react-native";
 import { Icon } from "react-native-elements";
 import { focusManager } from "@tanstack/react-query";
-import { Colors } from "./src/constants";
+import { Colors, publicRoutes } from "./src/constants";
 import FlashMessage from "react-native-flash-message";
+import FooterMenu from "./src/components/FooterMenu";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const navigationRef = createRef();
 
@@ -148,6 +150,8 @@ const toastConfig = {
 };
 
 const App = () => {
+	const [currentRoute, setCurrentRoute] = useState(null);
+
 	// functions
 	function onAppStateChange(status) {
 		if (Platform.OS !== "web") {
@@ -172,16 +176,8 @@ const App = () => {
 		return () => subscription.remove();
 	}, []);
 
-	// constants
-	const publicRoutes = [
-		"Login",
-		"Register",
-		"TermsConditions",
-		"PrivacyPolicy",
-	];
-
 	return (
-		<>
+		<GestureHandlerRootView style={{ flex: 1 }}>
 			<FlashMessage position="top" />
 			<NavigationContainer
 				ref={navigationRef}
@@ -189,17 +185,23 @@ const App = () => {
 					const accessToken = await checkToken();
 					const routeName = state.routes[state.index].name;
 
+					setCurrentRoute(routeName);
+
 					if (!publicRoutes.includes(routeName) && !accessToken) {
 						navigationRef.current?.navigate("Login");
 					}
+				}}
+				screenOptions={{
+					contentStyle: { paddingBottom: 120 }, // Applying padding to the screen
 				}}>
 				<QueryClientProvider client={queryClient}>
 					{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 					<StackNavigator />
+					<FooterMenu currentRoute={currentRoute} />
 				</QueryClientProvider>
 			</NavigationContainer>
 			<Toast config={toastConfig} />
-		</>
+		</GestureHandlerRootView>
 	);
 };
 

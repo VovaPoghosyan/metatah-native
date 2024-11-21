@@ -4,7 +4,6 @@ import { useNavigation } from "@react-navigation/native";
 import { removeToken } from "../../state/helpers/auth";
 import { Colors } from "../../constants";
 import Background from "../../components/Background";
-import FooterMenu from "../../components/FooterMenu";
 import { Button } from "../../components/Buttons";
 
 const RoutinesScreen = () => {
@@ -52,7 +51,6 @@ const RoutinesScreen = () => {
 					onPress={logout}
 				/>
 			</View>
-			<FooterMenu />
 		</View>
 	);
 };

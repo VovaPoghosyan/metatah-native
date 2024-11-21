@@ -5,10 +5,10 @@ import { useTodos } from "../../../state/hooks/query/todos/useTodos";
 import { Colors } from "../../../constants";
 import { styles } from "./styles";
 import Background from "../../../components/Background";
-import FooterMenu from "../../../components/FooterMenu";
 import CollapsibleTask from "../../../components/CollapsibleTask";
 import TaskEmpty from "../../../components/TaskEmpty";
 import Spinner from "react-native-loading-spinner-overlay";
+import Layout from "../../../layouts/Layout";
 
 const TodoScreen = () => {
 	// useState
@@ -100,55 +100,54 @@ const TodoScreen = () => {
 	}, [convertedData]);
 
 	return (
-		<View style={{ flex: 1 }}>
+		<Layout>
 			<Background imageName="mr-bg" />
-			<Spinner visible={isLoading || isFetching} />
-			<Agenda
-				showClosingKnob
-				selected={defaultDay}
-				theme={{
-					calendarBackground: Colors.ui_light_gray,
-					agendaKnobColor: Colors.ui_light_green,
-					monthTextColor: Colors.ui_purple,
-					textSectionTitleColor: Colors.ui_dark_purple,
-					selectedDayBackgroundColor: Colors.ui_light_green,
-					dayTextColor: Colors.ui_black,
-					dotColor: Colors.ui_darker_purple,
-				}}
-				onDayPress={(day) => handleDayPress(day)}
-				items={items}
-				renderItem={(item) => (
-					<View style={styles.item}>
-						{item?.map((todo, index) => {
-							return (
-								<CollapsibleTask
-									key={index}
-									taskData={{
-										id: todo.id,
-										title: todo.title,
-										priority: todo.priority,
-										note: todo.note,
-										startTime: todo.startTime,
-										endTime: todo.endTime,
-										notify: todo.notify,
-									}}
-									editScreen="AddOrEditTodo"
-								/>
-							);
-						})}
-					</View>
-				)}
-				markedDates={markedData}
-				renderEmptyData={() => (
-					<View style={styles.emptyContainer}>
-						<TaskEmpty title="to-do" />
-					</View>
-				)}
-			/>
-			<View style={{ padding: 10 }}>
-				<FooterMenu />
+			<View style={{ flex: 1 }}>
+				<Spinner visible={isLoading || isFetching} />
+				<Agenda
+					showClosingKnob
+					selected={defaultDay}
+					theme={{
+						calendarBackground: Colors.ui_light_gray,
+						agendaKnobColor: Colors.ui_light_green,
+						monthTextColor: Colors.ui_purple,
+						textSectionTitleColor: Colors.ui_dark_purple,
+						selectedDayBackgroundColor: Colors.ui_light_green,
+						dayTextColor: Colors.ui_black,
+						dotColor: Colors.ui_darker_purple,
+					}}
+					onDayPress={(day) => handleDayPress(day)}
+					items={items}
+					renderItem={(item) => (
+						<View style={styles.item}>
+							{item?.map((todo, index) => {
+								return (
+									<CollapsibleTask
+										key={index}
+										taskData={{
+											id: todo.id,
+											title: todo.title,
+											priority: todo.priority,
+											note: todo.note,
+											startTime: todo.startTime,
+											endTime: todo.endTime,
+											notify: todo.notify,
+										}}
+										editScreen="AddOrEditTodo"
+									/>
+								);
+							})}
+						</View>
+					)}
+					markedDates={markedData}
+					renderEmptyData={() => (
+						<View style={styles.emptyContainer}>
+							<TaskEmpty title="to-do" />
+						</View>
+					)}
+				/>
 			</View>
-		</View>
+		</Layout>
 	);
 };
 

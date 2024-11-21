@@ -1,30 +1,48 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 import { Colors } from "../../constants";
 
 export const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '100%',
-    justifyContent: 'space-between',
-    height: 70,
-  },
+	footerMenu: {
+		width: "100%",
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "center",
+		paddingTop: 20,
+		paddingBottom: 30,
+		position: "absolute",
+		bottom: 0,
+	},
 
-  menuItem: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    height: 50,
-    width: 70,
-  },
+	container: {
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "space-between",
+		width: "92%",
+	},
 
-  menuItemTitle: {
-    fontSize: 14,
-    color: Colors.ui_white,
-  },
+	menuItem: {
+		flexDirection: "column",
+		alignItems: "center",
+		justifyContent: "space-between",
+		height: 50,
+		width: 70,
+		position: "relative",
+	},
 
-  image: {
-    width: 28,
-    height: 28,
-  }
+	menuItemTitle: {
+		fontSize: 14,
+		color: Colors.ui_white,
+	},
+
+	image: {
+		width: 28,
+		height: 28,
+	},
+
+	dot: {
+		fontSize: 24,
+		color: Colors.ui_white,
+		position: "absolute",
+		bottom: -20,
+	},
 });

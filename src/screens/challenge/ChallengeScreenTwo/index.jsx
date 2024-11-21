@@ -7,7 +7,6 @@ import { styles } from "./styles";
 import CalendarComponent from "../../../components/CalendarComponent";
 import globalStyles from "../../../assets/globalStyles";
 import Background from "../../../components/Background";
-import FooterMenu from "../../../components/FooterMenu";
 
 const ChallengeScreenTwo = () => {
 	// useState
@@ -185,7 +184,6 @@ const ChallengeScreenTwo = () => {
 					<Text style={globalStyles.text}>next</Text>
 				</TouchableOpacity>
 			</View>
-			<FooterMenu />
 		</View>
 	);
 };

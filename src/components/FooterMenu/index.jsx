@@ -4,15 +4,15 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
-const FooterMenu = () => {
+const FooterMenu = ({ currentRoute }) => {
 	const navigation = useNavigation();
 
 	const menuItems = [
 		{
-			key: "myDay",
-			title: "my day",
-			imageSrc: require("../../assets/icon/sun-1.png"),
-			navigatePageSrc: "Routines",
+			key: "goals",
+			title: "goals",
+			imageSrc: require("../../assets/icon/goals.png"),
+			navigatePageSrc: "Goals",
 		},
 		{
 			key: "todos",
@@ -21,10 +21,10 @@ const FooterMenu = () => {
 			navigatePageSrc: "Todo",
 		},
 		{
-			key: "goals",
-			title: "goals",
-			imageSrc: require("../../assets/icon/goals.png"),
-			navigatePageSrc: "Goals",
+			key: "calendar",
+			title: "calendar",
+			imageSrc: require("../../assets/icon/calendar-white.png"),
+			navigatePageSrc: "Calendar",
 		},
 		{
 			key: "notes",
@@ -33,28 +33,35 @@ const FooterMenu = () => {
 			navigatePageSrc: "Notes",
 		},
 		{
-			key: "calendar",
-			title: "calendar",
-			imageSrc: require("../../assets/icon/calendar-white.png"),
-			navigatePageSrc: "Calendar",
+			key: "analytics",
+			title: "analytics",
+			imageSrc: require("../../assets/icon/sun-1.png"),
+			navigatePageSrc: "Analytics",
 		},
 	];
 
 	return (
-		<View style={styles.container}>
-			{menuItems.map((item) => (
-				<TouchableOpacity
-					key={item.key}
-					style={styles.menuItem}
-					onPress={() => navigation.navigate(item.navigatePageSrc)}>
-					<Image
-						style={styles.image}
-						source={item.imageSrc}
-						resizeMode="contain"
-					/>
-					<Text style={styles.menuItemTitle}>{item.title}</Text>
-				</TouchableOpacity>
-			))}
+		<View style={styles.footerMenu}>
+			<View style={styles.container}>
+				{menuItems.map((item) => (
+					<TouchableOpacity
+						key={item.key}
+						style={styles.menuItem}
+						onPress={() =>
+							navigation.navigate(item.navigatePageSrc)
+						}>
+						<Image
+							style={styles.image}
+							source={item.imageSrc}
+							resizeMode="contain"
+						/>
+						<Text style={styles.menuItemTitle}>{item.title}</Text>
+						{currentRoute === item.navigatePageSrc && (
+							<Text style={styles.dot}>•</Text>
+						)}
+					</TouchableOpacity>
+				))}
+			</View>
 		</View>
 	);
 };

@@ -5,10 +5,10 @@ import { Agenda } from "react-native-calendars";
 import { styles } from "./styles";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Colors } from "../../constants";
-import FooterMenu from "../../components/FooterMenu";
 import Background from "../../components/Background";
 import CollapsibleTask from "../../components/CollapsibleTask";
 import TaskEmpty from "../../components/TaskEmpty";
+import Layout from "../../layouts/Layout";
 
 const CalendarScreen = () => {
 	// useNavigation
@@ -119,103 +119,106 @@ const CalendarScreen = () => {
 	}, []);
 
 	return (
-		<View style={{ flex: 1 }}>
+		<Layout>
 			<Background imageName="mr-bg" />
-			<Agenda
-				showClosingKnob
-				selected={defaultDay}
-				theme={{
-					calendarBackground: Colors.ui_light_gray,
-					agendaKnobColor: Colors.ui_light_green,
-					monthTextColor: Colors.ui_purple,
-					textSectionTitleColor: Colors.ui_dark_purple,
-					selectedDayBackgroundColor: Colors.ui_light_green,
-					dayTextColor: Colors.ui_black,
-					dotColor: Colors.ui_darker_purple,
-				}}
-				onDayPress={(day) => handleDayPress(day)}
-				items={items}
-				renderItem={(item) => (
-					<View style={styles.item}>
-						<View style={styles.tasks}>
-							<View style={styles.title}>
-								<View style={styles.taskTitle}>
-									<Text style={styles.taskTitleText}>
-										todos
-									</Text>
+			<View style={{ flex: 1 }}>
+				<Agenda
+					showClosingKnob
+					selected={defaultDay}
+					theme={{
+						calendarBackground: Colors.ui_light_gray,
+						agendaKnobColor: Colors.ui_light_green,
+						monthTextColor: Colors.ui_purple,
+						textSectionTitleColor: Colors.ui_dark_purple,
+						selectedDayBackgroundColor: Colors.ui_light_green,
+						dayTextColor: Colors.ui_black,
+						dotColor: Colors.ui_darker_purple,
+					}}
+					onDayPress={(day) => handleDayPress(day)}
+					items={items}
+					renderItem={(item) => (
+						<View style={styles.item}>
+							<View style={styles.tasks}>
+								<View style={styles.title}>
+									<View style={styles.taskTitle}>
+										<Text style={styles.taskTitleText}>
+											todos
+										</Text>
+									</View>
+									<TouchableOpacity
+										style={styles.addNew}
+										onPress={() =>
+											navigation.navigate("AddOrEditTodo")
+										}>
+										<Text style={styles.addNewText}>
+											new +
+										</Text>
+									</TouchableOpacity>
 								</View>
-								<TouchableOpacity
-									style={styles.addNew}
-									onPress={() =>
-										navigation.navigate("AddOrEditTodo")
-									}>
-									<Text style={styles.addNewText}>new +</Text>
-								</TouchableOpacity>
+								<View>
+									{item.todos.map((todo, index) => (
+										<CollapsibleTask
+											key={index}
+											taskData={{
+												title: todo.title,
+												priority: todo.priority,
+												note: todo.note,
+												startTime: todo.startTime,
+												endTime: todo.endTime,
+												notify: todo.notify,
+											}}
+										/>
+									))}
+								</View>
 							</View>
-							<View>
-								{item.todos.map((todo, index) => (
-									<CollapsibleTask
-										key={index}
-										taskData={{
-											title: todo.title,
-											priority: todo.priority,
-											note: todo.note,
-											startTime: todo.startTime,
-											endTime: todo.endTime,
-											notify: todo.notify,
-										}}
-									/>
-								))}
+							<View style={styles.goals}>
+								<View style={styles.title}>
+									<View style={styles.taskTitle}>
+										<Text style={styles.taskTitleText}>
+											goals
+										</Text>
+									</View>
+									<TouchableOpacity
+										style={styles.addNew}
+										onPress={() =>
+											navigation.navigate("AddOrEditGoal")
+										}>
+										<Text style={styles.addNewText}>
+											new +
+										</Text>
+									</TouchableOpacity>
+								</View>
+								<View>
+									{item.goals.map((goal, index) => (
+										<CollapsibleTask
+											key={index}
+											taskData={{
+												title: goal.title,
+												priority: goal.priority,
+												note: goal.note,
+												startTime: goal.startTime,
+												endTime: goal.endTime,
+												notify: goal.notify,
+											}}
+										/>
+									))}
+								</View>
 							</View>
 						</View>
-						<View style={styles.goals}>
-							<View style={styles.title}>
-								<View style={styles.taskTitle}>
-									<Text style={styles.taskTitleText}>
-										goals
-									</Text>
-								</View>
-								<TouchableOpacity
-									style={styles.addNew}
-									onPress={() =>
-										navigation.navigate("AddOrEditGoal")
-									}>
-									<Text style={styles.addNewText}>new +</Text>
-								</TouchableOpacity>
-							</View>
-							<View>
-								{item.goals.map((goal, index) => (
-									<CollapsibleTask
-										key={index}
-										taskData={{
-											title: goal.title,
-											priority: goal.priority,
-											note: goal.note,
-											startTime: goal.startTime,
-											endTime: goal.endTime,
-											notify: goal.notify,
-										}}
-									/>
-								))}
-							</View>
+					)}
+					markedDates={markedData}
+					renderEmptyData={() => (
+						<View
+							style={{
+								flex: 1,
+								backgroundColor: "rgba(0, 0, 0, 0)",
+							}}>
+							<TaskEmpty title="task" />
 						</View>
-					</View>
-				)}
-				markedDates={markedData}
-				renderEmptyData={() => (
-					<View
-						style={{
-							flex: 1,
-							backgroundColor: "rgba(0, 0, 0, 0)",
-						}}>
-						<TaskEmpty title="task" />
-					</View>
-				)}
-			/>
-			<View style={{ padding: 10 }}>
-				<FooterMenu />
+					)}
+				/>
 			</View>
-		</View>
+		</Layout>
 	);
 };
 

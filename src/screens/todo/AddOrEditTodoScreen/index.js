@@ -12,10 +12,10 @@ import Notes from "../../../components/Notes";
 import TimeComponent from "../../../components/TimeComponent";
 import SelectPriority from "../../../components/SelectPriority";
 import Background from "../../../components/Background";
-import FooterMenu from "../../../components/FooterMenu";
 import globalStyles from "../../../assets/globalStyles";
 import CalendarComponent from "../../../components/CalendarComponent";
 import Spinner from "react-native-loading-spinner-overlay";
+import Layout from "../../../layouts/Layout";
 
 function AddOrEditTodoScreen() {
 	// useNavigation
@@ -97,101 +97,108 @@ function AddOrEditTodoScreen() {
 	});
 
 	return (
-		<View style={styles.container}>
-			<Spinner
-				visible={
-					todoData.isLoading ||
-					isLoadingUser ||
-					mutateCreateTodo.isPending ||
-					mutateEditTodo.isPending
-				}
-			/>
+		<Layout>
 			<Background imageName="mr-bg" />
-			<>
-				<View style={styles.titleContainer}>
-					<Text style={styles.title}>
-						hello, {userData?.first_name}
-					</Text>
-				</View>
-				<ScrollView contentContainerStyle={styles.toDoSection}>
-					<Notes
-						titleValue={data.title}
-						noteValue={data.note}
-						onChangeTitle={(value) => onChangeData(value, "title")}
-						onChangeValue={(value) => onChangeData(value, "note")}
-					/>
-
-					<View style={styles.periodDate}>
-						<CalendarComponent
-							period={data.period}
-							changePeriod={(value) =>
-								onChangeData(value, "period")
+			<View style={styles.container}>
+				<Spinner
+					visible={
+						todoData.isLoading ||
+						isLoadingUser ||
+						mutateCreateTodo.isPending ||
+						mutateEditTodo.isPending
+					}
+				/>
+				<>
+					<View style={styles.titleContainer}>
+						<Text style={styles.title}>
+							hello, {userData?.first_name}
+						</Text>
+					</View>
+					<ScrollView contentContainerStyle={styles.toDoSection}>
+						<Notes
+							titleValue={data.title}
+							noteValue={data.note}
+							onChangeTitle={(value) =>
+								onChangeData(value, "title")
+							}
+							onChangeValue={(value) =>
+								onChangeData(value, "note")
 							}
 						/>
-					</View>
-					<View style={styles.periodTime}>
-						<View style={styles.timeBlock}>
-							<Text style={styles.label}>Start time:</Text>
-							<TimeComponent
-								time={data.startTime}
-								setTime={(value) =>
-									onChangeData(value, "startTime")
-								}
-							/>
-						</View>
-						<View style={styles.timeBlock}>
-							<Text style={styles.label}>End time:</Text>
-							<TimeComponent
-								time={data.endTime}
-								setTime={(value) =>
-									onChangeData(value, "endTime")
-								}
-							/>
-						</View>
-					</View>
 
-					<View style={globalStyles.mt_10}>
-						<Text style={styles.label}>Reminder:</Text>
-						<TimeComponent
-							time={data.reminder}
-							setTime={(value) => onChangeData(value, "reminder")}
-							reminderIcon={
-								<Icon
-									solid
-									name="notifications-none"
-									type="material"
-									color={Colors.ui_dark_purple}
+						<View style={styles.periodDate}>
+							<CalendarComponent
+								period={data.period}
+								changePeriod={(value) =>
+									onChangeData(value, "period")
+								}
+							/>
+						</View>
+						<View style={styles.periodTime}>
+							<View style={styles.timeBlock}>
+								<Text style={styles.label}>Start time:</Text>
+								<TimeComponent
+									time={data.startTime}
+									setTime={(value) =>
+										onChangeData(value, "startTime")
+									}
 								/>
+							</View>
+							<View style={styles.timeBlock}>
+								<Text style={styles.label}>End time:</Text>
+								<TimeComponent
+									time={data.endTime}
+									setTime={(value) =>
+										onChangeData(value, "endTime")
+									}
+								/>
+							</View>
+						</View>
+
+						<View style={globalStyles.mt_10}>
+							<Text style={styles.label}>Reminder:</Text>
+							<TimeComponent
+								time={data.reminder}
+								setTime={(value) =>
+									onChangeData(value, "reminder")
+								}
+								reminderIcon={
+									<Icon
+										solid
+										name="notifications-none"
+										type="material"
+										color={Colors.ui_dark_purple}
+									/>
+								}
+							/>
+						</View>
+
+						<SelectPriority
+							activeItem={data.priority}
+							onChange={(value) =>
+								onChangeData(value, "priority")
 							}
 						/>
-					</View>
 
-					<SelectPriority
-						activeItem={data.priority}
-						onChange={(value) => onChangeData(value, "priority")}
-					/>
-
-					<View style={styles.footer}>
-						{id ? (
-							<TouchableOpacity onPress={handleEditTodo}>
-								<Text style={styles.addText}>edit</Text>
+						<View style={styles.footer}>
+							{id ? (
+								<TouchableOpacity onPress={handleEditTodo}>
+									<Text style={styles.addText}>edit</Text>
+								</TouchableOpacity>
+							) : (
+								<TouchableOpacity onPress={handleCreateTodo}>
+									<Text style={styles.addText}>add</Text>
+								</TouchableOpacity>
+							)}
+							<TouchableOpacity
+								onPress={() => navigation.navigate("Todo")}>
+								<Text style={styles.cancelText}>cancel</Text>
 							</TouchableOpacity>
-						) : (
-							<TouchableOpacity onPress={handleCreateTodo}>
-								<Text style={styles.addText}>add</Text>
-							</TouchableOpacity>
-						)}
-						<TouchableOpacity
-							onPress={() => navigation.navigate("Todo")}>
-							<Text style={styles.cancelText}>cancel</Text>
-						</TouchableOpacity>
-					</View>
-				</ScrollView>
-			</>
-			<View style={{ paddingVertical: 10 }}>
-				<FooterMenu />
+						</View>
+					</ScrollView>
+				</>
 			</View>
-		</View>
+		</Layout>
 	);
 }
 

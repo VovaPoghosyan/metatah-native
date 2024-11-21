@@ -248,3 +248,10 @@ export const purposeItems = {
 	mind: "mind",
 	soul: "soul",
 };
+
+export const publicRoutes = [
+	"Login",
+	"Register",
+	"TermsConditions",
+	"PrivacyPolicy",
+];

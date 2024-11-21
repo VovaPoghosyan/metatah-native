@@ -5,10 +5,10 @@ import { useGoals } from "../../../state/hooks/query/goals/useGoals";
 import { styles } from "./styles";
 import { Colors } from "../../../constants";
 import Background from "../../../components/Background";
-import FooterMenu from "../../../components/FooterMenu";
 import CollapsibleTask from "../../../components/CollapsibleTask";
 import TaskEmpty from "../../../components/TaskEmpty";
 import Spinner from "react-native-loading-spinner-overlay";
+import Layout from "../../../layouts/Layout";
 
 const GoalsScreen = () => {
 	// useState
@@ -99,59 +99,58 @@ const GoalsScreen = () => {
 	};
 
 	return (
-		<View style={{ flex: 1 }}>
+		<Layout>
 			<Background imageName="mr-bg" />
-			<Spinner visible={isLoading || isFetching} />
-			<Agenda
-				showClosingKnob
-				selected={defaultDay}
-				theme={{
-					calendarBackground: Colors.ui_light_gray,
-					agendaKnobColor: Colors.ui_light_green,
-					monthTextColor: Colors.ui_purple,
-					textSectionTitleColor: Colors.ui_dark_purple,
-					selectedDayBackgroundColor: Colors.ui_light_green,
-					dayTextColor: Colors.ui_black,
-					dotColor: Colors.ui_darker_purple,
-				}}
-				onDayPress={(day) => handleDayPress(day)}
-				items={items}
-				renderItem={(item) => (
-					<View style={styles.item}>
-						{item?.map((goal, index) => {
-							return (
-								<CollapsibleTask
-									key={index}
-									taskData={{
-										id: goal.id,
-										title: goal.title,
-										priority: goal.priority,
-										note: goal.note,
-										startTime: goal.startTime,
-										endTime: goal.endTime,
-										notify: goal.notify,
-									}}
-									editScreen="AddOrEditGoal"
-								/>
-							);
-						})}
-					</View>
-				)}
-				markedDates={markedData}
-				renderEmptyData={() => (
-					<View
-						style={{
-							flex: 1,
-							backgroundColor: "rgba(0, 0, 0, 0)",
-						}}>
-						<TaskEmpty title="goal" />
-					</View>
-				)}
-			/>
-			<View style={{ padding: 10 }}>
-				<FooterMenu />
+			<View style={{ flex: 1 }}>
+				<Spinner visible={isLoading || isFetching} />
+				<Agenda
+					showClosingKnob
+					selected={defaultDay}
+					theme={{
+						calendarBackground: Colors.ui_light_gray,
+						agendaKnobColor: Colors.ui_light_green,
+						monthTextColor: Colors.ui_purple,
+						textSectionTitleColor: Colors.ui_dark_purple,
+						selectedDayBackgroundColor: Colors.ui_light_green,
+						dayTextColor: Colors.ui_black,
+						dotColor: Colors.ui_darker_purple,
+					}}
+					onDayPress={(day) => handleDayPress(day)}
+					items={items}
+					renderItem={(item) => (
+						<View style={styles.item}>
+							{item?.map((goal, index) => {
+								return (
+									<CollapsibleTask
+										key={index}
+										taskData={{
+											id: goal.id,
+											title: goal.title,
+											priority: goal.priority,
+											note: goal.note,
+											startTime: goal.startTime,
+											endTime: goal.endTime,
+											notify: goal.notify,
+										}}
+										editScreen="AddOrEditGoal"
+									/>
+								);
+							})}
+						</View>
+					)}
+					markedDates={markedData}
+					renderEmptyData={() => (
+						<View
+							style={{
+								flex: 1,
+								backgroundColor: "rgba(0, 0, 0, 0)",
+							}}>
+							<TaskEmpty title="goal" />
+						</View>
+					)}
+				/>
 			</View>
-		</View>
+		</Layout>
 	);
 };
 

@@ -9,8 +9,8 @@ import { Button } from "../../../components/Buttons";
 import { styles } from "./styles";
 import Notes from "../../../components/Notes";
 import Background from "../../../components/Background";
-import FooterMenu from "../../../components/FooterMenu";
 import Spinner from "react-native-loading-spinner-overlay";
+import Layout from "../../../layouts/Layout";
 
 function AddOrEditNoteScreen() {
 	// useNavigation
@@ -84,42 +84,48 @@ function AddOrEditNoteScreen() {
 	});
 
 	return (
-		<View style={styles.container}>
-			<Spinner
-				visible={
-					noteData.isLoading ||
-					isLoadingUser ||
-					mutateCreateNote.isPending ||
-					mutateEditNote.isPending
-				}
-			/>
+		<Layout>
 			<Background imageName="mr-bg" />
-			<View style={styles.goalSection}>
-				<View style={styles.titleContainer}>
-					<Text style={styles.title}>
-						hello, {userData?.first_name}
-					</Text>
-				</View>
-				<ScrollView contentContainerStyle={styles.goalSectionContainer}>
-					<Notes
-						titleValue={data.title}
-						noteValue={data.note}
-						onChangeTitle={(value) => onChangeData(value, "title")}
-						onChangeValue={(value) => onChangeData(value, "note")}
-					/>
-				</ScrollView>
-				<Button
-					title={id ? "edit" : "create"}
-					buttonWidth={100}
-					borderWidth={0}
-					fontSize={20}
-					lineHeight={24}
-					type="primary"
-					onPress={id ? handleEditNote : handleCreateNote}
+			<View style={styles.container}>
+				<Spinner
+					visible={
+						noteData.isLoading ||
+						isLoadingUser ||
+						mutateCreateNote.isPending ||
+						mutateEditNote.isPending
+					}
 				/>
+				<View style={styles.goalSection}>
+					<View style={styles.titleContainer}>
+						<Text style={styles.title}>
+							hello, {userData?.first_name}
+						</Text>
+					</View>
+					<ScrollView
+						contentContainerStyle={styles.goalSectionContainer}>
+						<Notes
+							titleValue={data.title}
+							noteValue={data.note}
+							onChangeTitle={(value) =>
+								onChangeData(value, "title")
+							}
+							onChangeValue={(value) =>
+								onChangeData(value, "note")
+							}
+						/>
+					</ScrollView>
+					<Button
+						title={id ? "edit" : "create"}
+						buttonWidth={100}
+						borderWidth={0}
+						fontSize={20}
+						lineHeight={24}
+						type="primary"
+						onPress={id ? handleEditNote : handleCreateNote}
+					/>
+				</View>
 			</View>
-			<FooterMenu />
-		</View>
+		</Layout>
 	);
 }
 

@@ -1,14 +1,9 @@
-import {
-	ScrollView,
-	Text,
-	TextInput,
-	TouchableOpacity,
-	View,
-} from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 import { styles as registerStyles } from "../../styles";
 import { useNavigation } from "@react-navigation/native";
 import RNSTextInput from "../../../../../components/TextInput";
+import Phone from "../phone";
 
 function PersonalInfo({ data, onChange, errors }) {
 	const navigation = useNavigation();
@@ -33,42 +28,38 @@ function PersonalInfo({ data, onChange, errors }) {
 			<RNSTextInput
 				name="first-name"
 				type="text"
-				placeholder="first name"
+				placeholder="first name*"
 				value={data.first_name}
 				onChangeText={(value) => onChange("first_name", value)}
-                error={errors.first_name}
+				error={errors.first_name}
 				style={registerStyles.textInput}
 			/>
 
 			<RNSTextInput
 				name="last-name"
 				type="text"
-				placeholder="last name"
+				placeholder="last name*"
 				value={data.last_name}
 				onChangeText={(value) => onChange("last_name", value)}
-                error={errors.last_name}
+				error={errors.last_name}
 				style={registerStyles.textInput}
 			/>
 
 			<RNSTextInput
 				name="email"
 				type="text"
-				placeholder="email address"
+				placeholder="email address*"
 				value={data.email}
 				onChangeText={(value) => onChange("email", value)}
-                error={errors.email}
+				error={errors.email}
 				autoCapitalize="none"
 				style={registerStyles.textInput}
 			/>
 
-			<RNSTextInput
-				name="phone"
-				type="text"
-				keyboardType="name-phone-pad"
-				placeholder="phone number"
-				value={data.phone}
-				onChangeText={(value) => onChange("phone", value)}
-				style={registerStyles.textInput}
+			<Phone
+				data={data}
+				error={errors.phone_number}
+				onChange={onChange}
 			/>
 
 			<View style={styles.anotherOption}>

@@ -29,7 +29,8 @@ const RegisterScreen = () => {
 		first_name: "",
 		last_name: "",
 		email: "",
-		phone: "",
+		country_code: "",
+		phone_number: "",
 		password: "",
 		password_confirmation: "",
 		profile_picture: undefined,
@@ -37,8 +38,6 @@ const RegisterScreen = () => {
 		job_title: "",
 		company_name: "",
 		linkedin_profile: "",
-		timezone: "",
-		language: "",
 		email_notifications: 1,
 		push_notifications: 1,
 	});
@@ -71,6 +70,9 @@ const RegisterScreen = () => {
 		if (!data.first_name.trim())
 			errors.first_name = "first name is required";
 		if (!data.last_name.trim()) errors.last_name = "last name is required";
+		if (data.phone_number && !/^\d+$/.test(data.phone_number)) {
+			errors.phone_number = "phone must contain only numbers";
+		}
 		if (!data.email.trim()) {
 			errors.email = "email is required";
 		} else if (!/\S+@\S+\.\S+/.test(data.email)) {

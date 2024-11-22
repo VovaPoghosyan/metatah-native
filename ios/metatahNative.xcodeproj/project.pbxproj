@@ -34,6 +34,7 @@
 		882C59675A2D48F0AE2419C4 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 887572A0FB6F44069D9E53F3 /* MaterialCommunityIcons.ttf */; };
 		8BB67C2851F145709C957A0C /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6C71ABBABBB4438A1565C3B /* EvilIcons.ttf */; };
 		A1407766552E99900C9D0FF7 /* libPods-metatahNative-metatahNativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C67A60AB36BB3AAD38D2586F /* libPods-metatahNative-metatahNativeTests.a */; };
+		B02507F42CF1107A00DFB136 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B02507F32CF1107A00DFB136 /* PrivacyInfo.xcprivacy */; };
 		B1DE8999847848AF9C567BD1 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A7F06B0C9434B7BBAA3F7CD /* Ionicons.ttf */; };
 		C359D05537B643C4866DD163 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C349646ED91846768571CC1C /* MaterialIcons.ttf */; };
 		DE95F5754B1140E0A9121E3D /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58463290E93D49C0992BCFBC /* Entypo.ttf */; };
@@ -79,6 +80,7 @@
 		887572A0FB6F44069D9E53F3 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = ../src/assets/fonts/MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
 		8A3A02777EFD4162BB97EC3B /* antipasto_extralight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = antipasto_extralight.ttf; path = ../src/assets/fonts/antipasto_extralight.ttf; sourceTree = "<group>"; };
 		9C3A9AFD86F37D8B87AF589F /* Pods-metatahNative-metatahNativeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-metatahNative-metatahNativeTests.debug.xcconfig"; path = "Target Support Files/Pods-metatahNative-metatahNativeTests/Pods-metatahNative-metatahNativeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B02507F32CF1107A00DFB136 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		B24DCA3CAD3F4AF88B149A7C /* antipasto_thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = antipasto_thin.ttf; path = ../src/assets/fonts/antipasto_thin.ttf; sourceTree = "<group>"; };
 		BC38D3D9BC2D42FD813FC338 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = ../src/assets/fonts/FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
 		C1BF6EDD44DD49C399AADCA0 /* antipasto_light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = antipasto_light.ttf; path = ../src/assets/fonts/antipasto_light.ttf; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				B02507F32CF1107A00DFB136 /* PrivacyInfo.xcprivacy */,
 			);
 			name = metatahNative;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				FE08650FF0AC4DBD8B5887D5 /* Foundation.ttf in Resources */,
 				B1DE8999847848AF9C567BD1 /* Ionicons.ttf in Resources */,
 				882C59675A2D48F0AE2419C4 /* MaterialCommunityIcons.ttf in Resources */,
+				B02507F42CF1107A00DFB136 /* PrivacyInfo.xcprivacy in Resources */,
 				C359D05537B643C4866DD163 /* MaterialIcons.ttf in Resources */,
 				072BC48CB6EE4D7B9EAB2023 /* Octicons.ttf in Resources */,
 				56DE4DAF4373433E8FD80F58 /* SimpleLineIcons.ttf in Resources */,

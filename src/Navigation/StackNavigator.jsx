@@ -39,23 +39,37 @@ import PrivacyPolicy from "../screens/termsAndPrivacy/privacyPolicy";
 import NotesScreen from "../screens/notes/NotesScreen";
 import AddOrEditNoteScreen from "../screens/notes/AddOrEditNoteScreen";
 import AnalyticsScreen from "../screens/AnalyticsScreen";
+import { Colors } from "../constants";
 
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="CalendarScreen">
+    <Stack.Navigator
+      initialRouteName="CalendarScreen"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: Colors.ui_gray,
+        },
+        headerTintColor: Colors.ui_white,
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          fontSize: 20,
+        },
+        headerBackTitle: 'Back',
+      }}
+    >
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="AboutWelcome" component={AboutWelcomeScreen} />
-        <Stack.Screen name="AboutLearn" component={AboutLearnScreen} />
+        <Stack.Screen name="AboutWelcome" component={AboutWelcomeScreen} options={{ title: 'Welcome' }} />
+        <Stack.Screen name="AboutLearn" component={AboutLearnScreen} options={{ title: 'Learn more' }} />
         <Stack.Screen name="Notes" component={NotesScreen} />
-        <Stack.Screen name="AddOrEditNote" component={AddOrEditNoteScreen} />
+        <Stack.Screen name="AddOrEditNote" component={AddOrEditNoteScreen} options={{ title: 'Note' }} />
         <Stack.Screen name="Calendar" component={CalendarScreen} />
         <Stack.Screen name="Goals" component={GoalsScreen} />
         <Stack.Screen name="Todo" component={TodoScreen} />
-        <Stack.Screen name="AddOrEditTodo" component={AddOrEditTodoScreen} />
-        <Stack.Screen name="AddOrEditGoal" component={AddOrEditGoalScreen} />
+        <Stack.Screen name="AddOrEditTodo" component={AddOrEditTodoScreen} options={{ title: 'Todo' }} />
+        <Stack.Screen name="AddOrEditGoal" component={AddOrEditGoalScreen} options={{ title: 'Goal' }} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="CreateProfileStep1" component={CreateProfileStep1} />
@@ -79,8 +93,8 @@ const StackNavigator = () => {
         <Stack.Screen name="ChallengeOne" component={ChallengeScreenOne} />
         <Stack.Screen name="ChallengeTwo" component={ChallengeScreenTwo} />
         <Stack.Screen name="ChallengeThree" component={ChallengeScreenThree} />
-        <Stack.Screen name="TermsConditions" component={TermsConditions} />
-        <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
+        <Stack.Screen name="TermsConditions" component={TermsConditions} options={{ title: 'Terms & Conditions' }} />
+        <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{ title: 'Privacy Policy' }} />
         <Stack.Screen name="Analytics" component={AnalyticsScreen} />
     </Stack.Navigator>
   );

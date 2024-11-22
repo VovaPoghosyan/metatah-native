@@ -73,9 +73,9 @@ function AddOrEditTodoScreen() {
 			navigation.navigate("Todo");
 			console.log(data);
 		},
-		onError: () => {
+		onError: (error) => {
 			showMessage({
-				message: "Oops! Something went wrong.",
+				message: error.response.data.message,
 				type: "danger",
 				floating: true,
 			});
@@ -87,9 +87,9 @@ function AddOrEditTodoScreen() {
 			navigation.navigate("Todo");
 			console.log(data);
 		},
-		onError: () => {
+		onError: (error) => {
 			showMessage({
-				message: "Oops! Something went wrong.",
+				message: error.response.data.message,
 				type: "danger",
 				floating: true,
 			});

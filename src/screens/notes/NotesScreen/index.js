@@ -51,9 +51,9 @@ function NotesScreen() {
 			navigation.navigate("Login");
 			console.log("User logged out successfully");
 		},
-		onError: () => {
+		onError: (error) => {
 			showMessage({
-				message: "Oops! Something went wrong.",
+				message: error.response.data.message,
 				type: "danger",
 				floating: true,
 			});

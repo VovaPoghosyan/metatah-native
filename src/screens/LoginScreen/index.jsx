@@ -42,9 +42,9 @@ const LoginScreen = () => {
 			storeUserLoginData({ email: data.email, password: data.password });
 			console.log("User logged in successfully");
 		},
-		onError: () => {
+		onError: (error) => {
 			showMessage({
-				message: "Oops! Something went wrong.",
+				message: error.response.data.message,
 				type: "danger",
 				floating: true,
 			});

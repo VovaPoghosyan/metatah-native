@@ -1,7 +1,6 @@
 import React, { createRef, useEffect, useState } from "react";
 import StackNavigator from "./src/Navigation/StackNavigator";
 import {
-	MutationCache,
 	QueryCache,
 	QueryClient,
 	QueryClientProvider,
@@ -41,36 +40,6 @@ const queryClient = new QueryClient({
 				type: "error",
 				text1: "API Error",
 				text2: errorMessage,
-				text1Style: {
-					fontSize: 20,
-					fontWeight: "400",
-					color: Colors.ui_purple,
-				},
-				text2Style: {
-					fontSize: 16,
-					fontWeight: "400",
-					color: Colors.ui_purple,
-				},
-			});
-		},
-	}),
-	mutationCache: new MutationCache({
-		onError: (error, _, __, mutation) => {
-			const errorMessage =
-				error?.response?.data?.message ||
-				error?.message ||
-				"Unknown error";
-
-			const { mutationKey } = mutation.options;
-
-			redirectToLoginPage(errorMessage);
-
-			Toast.show({
-				type: "error",
-				text1: `API Mutation Error`,
-				text2: mutationKey
-					? `${mutationKey}: ${errorMessage}`
-					: errorMessage,
 				text1Style: {
 					fontSize: 20,
 					fontWeight: "400",

@@ -20,7 +20,6 @@ import ProfessionalInfo from "./components/professional-info";
 import ProfilePicture from "./components/profile-picture";
 import Notifications from "./components/notifications";
 import Agree from "./components/agree";
-import Toast from "react-native-toast-message";
 import Spinner from "react-native-loading-spinner-overlay";
 
 const RegisterScreen = () => {
@@ -46,6 +45,7 @@ const RegisterScreen = () => {
 	const [agreeToTerms, setAgreeToTerms] = useState(false);
 	const [agreeToPrivacyPolicy, setAgreeToPrivacyPolicy] = useState(false);
 	const [personalInfoErrors, setPersonalInfoErrors] = useState({});
+	const [profilePictureErrors, setProfilePictureErrors] = useState({});
 	const [passwordErrors, setPasswordErrors] = useState({});
 	const [userId, setUserId] = useState(null);
 
@@ -330,12 +330,17 @@ const RegisterScreen = () => {
 				: setActivePage((prev) => prev + 1);
 		},
 		onError: (error) => {
-			Toast.show({
-				type: "customErrorToast",
-				text1: `${Object.values(error.response.data.data).join("\n")}`,
-				position: "bottom",
-				bottomOffset: 120,
-			});
+			switch (activePage) {
+				case 1:
+					setPersonalInfoErrors(error.response.data.data);
+					break;
+				case 2:
+					setPasswordErrors(error.response.data.data);
+					break;
+				case 3:
+					setProfilePictureErrors(error.response.data.data);
+					break;
+			}
 		},
 	});
 

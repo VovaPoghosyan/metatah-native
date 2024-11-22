@@ -99,9 +99,9 @@ function AddOrEditGoalScreen() {
 			navigation.navigate("Goals");
 			console.log(data);
 		},
-		onError: () => {
+		onError: (error) => {
 			showMessage({
-				message: "Oops! Something went wrong.",
+				message: error.response.data.message,
 				type: "danger",
 				floating: true,
 			});
@@ -113,9 +113,9 @@ function AddOrEditGoalScreen() {
 			navigation.navigate("Goals");
 			console.log(data);
 		},
-		onError: () => {
+		onError: (error) => {
 			showMessage({
-				message: "Oops! Something went wrong.",
+				message: error.response.data.message,
 				type: "danger",
 				floating: true,
 			});

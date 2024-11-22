@@ -23,7 +23,7 @@ export const registerUser = async (payload) => {
 	try {
 		const { step, data: requestData } = payload;
 
-		const { data } = await axios.post(
+		const response = await axios.post(
 			`${API_URL}/register/step-${step}`,
 			requestData,
 			{
@@ -32,10 +32,11 @@ export const registerUser = async (payload) => {
 				},
 			}
 		);
-		console.log("User data:", data); // Log the response data
+		console.log("User data:", response); // Log the response data
 
-		data.data?.token && (await setItemInStorage("token", data.data.token));
-		return data;
+		response.data?.data?.token &&
+			(await setItemInStorage("token", response.data?.data.token));
+		return response;
 	} catch (error) {
 		console.error(Object.values(error.response.data.data));
 		throw error;
@@ -58,9 +59,13 @@ export const loginUser = async (payload) => {
 export const logoutUser = async () => {
 	const token = await authHeader();
 	try {
-		const { status } = await axios.post(`${API_URL}/logout`, {}, {
-			headers: token,
-		});
+		const { status } = await axios.post(
+			`${API_URL}/logout`,
+			{},
+			{
+				headers: token,
+			}
+		);
 
 		await removeItemFromStorage("token");
 		return status;

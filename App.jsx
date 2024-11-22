@@ -197,7 +197,9 @@ const App = () => {
 				<QueryClientProvider client={queryClient}>
 					{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 					<StackNavigator />
-					<FooterMenu currentRoute={currentRoute} />
+					{!publicRoutes.includes(currentRoute) && (
+						<FooterMenu currentRoute={currentRoute} />
+					)}
 				</QueryClientProvider>
 			</NavigationContainer>
 			<Toast config={toastConfig} />

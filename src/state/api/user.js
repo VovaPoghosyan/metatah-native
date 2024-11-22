@@ -1,7 +1,10 @@
 import axios from "axios";
 import authHeader from "../helpers/auth-header";
 import { API_URL } from "../utils/constants";
-import { setItemInStorage } from "../async-storage/asyncStorage";
+import {
+	removeItemFromStorage,
+	setItemInStorage,
+} from "../async-storage/asyncStorage";
 
 export const getUser = async () => {
 	try {
@@ -42,6 +45,26 @@ export const loginUser = async (payload) => {
 		return data;
 	} catch (error) {
 		// console.error("Error logging in user: ", error);
+		throw error;
+	}
+};
+
+export const logoutUser = async () => {
+	const token = await authHeader();
+	console.log("header", token);
+	try {
+		const { status } = await axios.post(
+			`${API_URL}/logout`,
+			null,
+			{
+				headers: token,
+			}
+		);
+
+		await removeItemFromStorage("token");
+		return status;
+	} catch (error) {
+		console.error("Error logging out user: ", error.response.data.message);
 		throw error;
 	}
 };

@@ -9,6 +9,7 @@ import { useNotes } from "../../../state/hooks/query/notes/useNotes";
 import Background from "../../../components/Background";
 import Spinner from "react-native-loading-spinner-overlay";
 import Layout from "../../../layouts/Layout";
+import { useLogoutUser } from "../../../state/hooks/mutations/user/logoutUser";
 
 function NotesScreen() {
 	// useNavigation
@@ -41,6 +42,24 @@ function NotesScreen() {
 		);
 	};
 
+	const logout = () => {
+		mutateLogoutUser.mutate();
+	};
+
+	const mutateLogoutUser = useLogoutUser({
+		onSuccess: () => {
+			navigation.navigate("Login");
+			console.log("User logged out successfully");
+		},
+		onError: () => {
+			showMessage({
+				message: "Oops! Something went wrong.",
+				type: "danger",
+				floating: true,
+			});
+		},
+	});
+
 	return (
 		<Layout>
 			<Background imageName="mr-bg" />
@@ -70,6 +89,17 @@ function NotesScreen() {
 						/>
 					</View>
 				</View>
+
+				<Button
+					title="log out"
+					buttonWidth={200}
+					borderWidth={0}
+					fontSize={20}
+					lineHeight={24}
+					marginTop={20}
+					type="primary"
+					onPress={logout}
+				/>
 			</View>
 		</Layout>
 	);

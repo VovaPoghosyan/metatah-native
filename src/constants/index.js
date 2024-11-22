@@ -13,6 +13,7 @@ export const Colors = {
 	ui_white: "#FFFFFF",
 	ui_white_2: "#FDFCFC",
 	ui_purple: "#5F3079",
+	ui_light_purple: "#7F498C",
 	ui_dark_purple: "#5D2D77",
 	ui_darker_purple: "#221D5C",
 	ui_green: "#97DE84",

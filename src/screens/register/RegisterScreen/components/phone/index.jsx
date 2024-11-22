@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import CountryPicker from "react-native-country-picker-modal";
@@ -19,7 +19,7 @@ const Phone = ({ data, error, onChange }) => {
 
 		if (country.callingCode[0]) {
 			setCountryCode("+" + country.callingCode[0]);
-			onChange("country_code", country.callingCode[0]);
+			onChange("country_code", `+${country.callingCode[0]}`);
 		} else {
 			setCountryCode("");
 		}

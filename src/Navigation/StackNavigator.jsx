@@ -49,7 +49,7 @@ const StackNavigator = () => {
       initialRouteName="CalendarScreen"
       screenOptions={{
         headerStyle: {
-          backgroundColor: Colors.ui_gray,
+          backgroundColor: Colors.ui_light_purple,
         },
         headerTintColor: Colors.ui_white,
         headerTitleStyle: {

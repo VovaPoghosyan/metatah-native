@@ -21,14 +21,20 @@ export const getUser = async () => {
 
 export const registerUser = async (payload) => {
 	try {
-		const { data } = await axios.post(`${API_URL}/register`, payload, {
-			headers: {
-				"Content-Type": "multipart/form-data",
-			},
-		});
+		const { step, data: requestData } = payload;
+
+		const { data } = await axios.post(
+			`${API_URL}/register/step-${step}`,
+			requestData,
+			{
+				headers: {
+					"Content-Type": "multipart/form-data",
+				},
+			}
+		);
 		console.log("User data:", data); // Log the response data
 
-		await setItemInStorage("token", data.data.token);
+		data.data?.token && (await setItemInStorage("token", data.data.token));
 		return data;
 	} catch (error) {
 		console.error(Object.values(error.response.data.data));
@@ -51,15 +57,10 @@ export const loginUser = async (payload) => {
 
 export const logoutUser = async () => {
 	const token = await authHeader();
-	console.log("header", token);
 	try {
-		const { status } = await axios.post(
-			`${API_URL}/logout`,
-			null,
-			{
-				headers: token,
-			}
-		);
+		const { status } = await axios.post(`${API_URL}/logout`, {}, {
+			headers: token,
+		});
 
 		await removeItemFromStorage("token");
 		return status;

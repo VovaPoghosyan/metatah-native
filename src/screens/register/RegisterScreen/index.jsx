@@ -29,7 +29,7 @@ const RegisterScreen = () => {
 		first_name: "",
 		last_name: "",
 		email: "",
-		country_code: "",
+		country_code: "+374",
 		phone_number: "",
 		password: "",
 		password_confirmation: "",
@@ -47,6 +47,7 @@ const RegisterScreen = () => {
 	const [agreeToPrivacyPolicy, setAgreeToPrivacyPolicy] = useState(false);
 	const [personalInfoErrors, setPersonalInfoErrors] = useState({});
 	const [passwordErrors, setPasswordErrors] = useState({});
+	const [userId, setUserId] = useState(null);
 
 	// useCameraPermission
 	const { hasPermission, requestPermission } = useCameraPermission();
@@ -202,16 +203,63 @@ const RegisterScreen = () => {
 	}, []);
 
 	const onPressNext = () => {
-		if (activePage === 1 && !validatePersonalInfo()) return;
-		if (activePage === 2 && !validatePassword()) return;
-		if (activePage === 6) {
-			if (agreeToTerms && agreeToPrivacyPolicy) {
-				console.log("created");
-			}
-
-			return;
+		if (activePage === 1) {
+			if (!validatePersonalInfo()) return;
+			mutateRegisterUser.mutate({
+				data: {
+					first_name: data.first_name,
+					last_name: data.last_name,
+					email: data.email,
+					country_code: data.country_code,
+					phone_number: data.phone_number,
+				},
+				step: "one",
+			});
 		}
-		setActivePage((prev) => prev + 1);
+
+		if (activePage === 2) {
+			if (!validatePassword()) return;
+			mutateRegisterUser.mutate({
+				data: {
+					user_id: userId,
+					password: data.password,
+					password_confirmation: data.password_confirmation,
+				},
+				step: "two",
+			});
+		}
+
+		if (activePage === 3) {
+			const formData = new FormData();
+			formData.append("user_id", userId);
+			formData.append("profile_picture", data.profile_picture);
+
+			mutateRegisterUser.mutate({ data: formData, step: "three" });
+		}
+
+		if (activePage === 4) {
+			mutateRegisterUser.mutate({
+				data: {
+					user_id: userId,
+					role: data.role,
+					job_title: data.job_title,
+					company_name: data.company_name,
+					linkedin_profile: data.linkedin_profile,
+				},
+				step: "four",
+			});
+		}
+
+		if (activePage === 5) {
+			mutateRegisterUser.mutate({
+				data: {
+					user_id: userId,
+					email_notifications: data.email_notifications,
+					push_notifications: data.push_notifications,
+				},
+				step: "five",
+			});
+		}
 	};
 
 	const onPressBack = () => {
@@ -275,9 +323,11 @@ const RegisterScreen = () => {
 
 	// useMutation
 	const mutateRegisterUser = useRegisterUser({
-		onSuccess: () => {
-			navigation.navigate("AboutWelcome");
-			console.log("registered user successfully");
+		onSuccess: ({ data }) => {
+			data?.user && setUserId(data.user.id);
+			data?.token
+				? navigation.navigate("AboutWelcome")
+				: setActivePage((prev) => prev + 1);
 		},
 		onError: (error) => {
 			Toast.show({
@@ -364,6 +414,7 @@ const RegisterScreen = () => {
 					onPressBack={onPressBack}
 					onPressNext={onPressNext}
 					mutateRegisterUser={mutateRegisterUser}
+					userId={userId}
 				/>
 			</View>
 		</View>

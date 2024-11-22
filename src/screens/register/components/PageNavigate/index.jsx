@@ -3,25 +3,16 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 
 const PageNavigate = ({
-	data,
 	isNotFirst,
 	isLast,
 	disabled,
 	onPressBack,
 	onPressNext,
 	mutateRegisterUser,
+	userId,
 }) => {
-	// formData
-	const formData = new FormData();
-	Object.keys(data).forEach((key) => {
-		if (data[key] !== undefined) {
-			formData.append(key, data[key]);
-		}
-	});
-
-	// functions
 	const createUser = () => {
-		mutateRegisterUser.mutate(formData);
+		mutateRegisterUser.mutate({ data: { user_id: userId }, step: "six" });
 	};
 
 	return (

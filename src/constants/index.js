@@ -28,6 +28,7 @@ export const Colors = {
 	ui_lightGray: "#E5E5E5",
 	ui_pink: "#B5179E",
 	ui_light_green: "#63D5DE",
+	ui_error: "#A22116",
 
 	// background
 	ui_main_bg: "#282560",

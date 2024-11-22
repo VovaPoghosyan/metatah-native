@@ -12,6 +12,7 @@ const RNSTextInput = (props) => {
 		type,
 		placeholderTextColor,
 		keyboardType,
+		error,
 		...restProps
 	} = props;
 
@@ -21,21 +22,23 @@ const RNSTextInput = (props) => {
 		}
 	}, [type]);
 
-	const finalStyle = [styles.Default, style && style];
+	const finalStyle = [styles.default, style, error && styles.invalid];
 
 	return (
-		<View style={styles.FormGroup}>
-			<Text style={styles.Label}>{label}</Text>
-
+		<View style={styles.formGroup}>
+			<Text style={styles.label}>{label}</Text>
 			<TextInput
 				secureTextEntry={secureTextEntry}
-				placeholderTextColor={placeholderTextColor || Colors.ui_purple}
+				placeholderTextColor={
+					placeholderTextColor ||
+					(error && Colors.ui_error) ||
+					Colors.ui_purple
+				}
 				{...restProps}
 				keyboardType={keyboardType || "default"}
 				style={finalStyle}
 				type={type}
 			/>
-
 			{type === "password" && (
 				<View style={styles.showPasswordContainer}>
 					<Icon
@@ -47,7 +50,7 @@ const RNSTextInput = (props) => {
 					/>
 				</View>
 			)}
-
+			{error && <Text style={styles.errorText}>{error}</Text>}
 			{/* {Platform.OS === "ios" && (
 				<View
 					style={{ height: 0.5, backgroundColor: Colors.ui_white }}
@@ -60,7 +63,7 @@ const RNSTextInput = (props) => {
 const HEIGHT = 35;
 
 const styles = StyleSheet.create({
-	Default: {
+	default: {
 		height: HEIGHT,
 		color: Colors.ui_purple,
 		// fontFamily: Fonts.antipasto,
@@ -79,19 +82,19 @@ const styles = StyleSheet.create({
 		}),
 	},
 
-	FormGroup: {
+	formGroup: {
 		paddingVertical: 10,
 		alignSelf: "stretch",
 		flexDirection: "column",
 		position: "relative",
 	},
 
-	Primary: {
+	primary: {
 		borderRadius: HEIGHT / 2,
 		backgroundColor: "transparent",
 	},
 
-	Label: {
+	label: {
 		color: Colors.ui_white,
 		fontSize: 20,
 		letterSpacing: 1,
@@ -104,7 +107,15 @@ const styles = StyleSheet.create({
 		top: 32,
 	},
 
-	ShowPassword: {},
+	invalid: {
+		borderBottomColor: Colors.ui_error,
+	},
+
+	errorText: {
+		color: Colors.ui_error,
+		bottom: -12,
+		position: "absolute",
+	},
 });
 
 export default RNSTextInput;

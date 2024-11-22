@@ -18,9 +18,7 @@ import PersonalInfo from "./components/personal-info";
 import CreatePassword from "./components/create-password";
 import ProfessionalInfo from "./components/professional-info";
 import ProfilePicture from "./components/profile-picture";
-import Preferences from "./components/preferences";
 import Notifications from "./components/notifications";
-import ReadTerms from "./components/readTerms";
 import Agree from "./components/agree";
 import Toast from "react-native-toast-message";
 import Spinner from "react-native-loading-spinner-overlay";
@@ -48,9 +46,8 @@ const RegisterScreen = () => {
 	const [cameraOpen, setCameraOpen] = useState(false);
 	const [agreeToTerms, setAgreeToTerms] = useState(false);
 	const [agreeToPrivacyPolicy, setAgreeToPrivacyPolicy] = useState(false);
-	const [isValidPassword, setIsValidPassword] = useState(true);
-	const [invalidMessage, setInvalidMessage] = useState("");
-	const [invalidMessageTitle, setInvalidMessageTitle] = useState("");
+	const [personalInfoErrors, setPersonalInfoErrors] = useState({});
+	const [passwordErrors, setPasswordErrors] = useState({});
 
 	// useCameraPermission
 	const { hasPermission, requestPermission } = useCameraPermission();
@@ -68,8 +65,79 @@ const RegisterScreen = () => {
 	const camera = useRef(null);
 
 	// functions
+	const validatePersonalInfo = () => {
+		let errors = {};
+
+		if (!data.first_name.trim())
+			errors.first_name = "first name is required";
+		if (!data.last_name.trim()) errors.last_name = "last name is required";
+		if (!data.email.trim()) {
+			errors.email = "email is required";
+		} else if (!/\S+@\S+\.\S+/.test(data.email)) {
+			errors.email = "email is not valid";
+		}
+
+		setPersonalInfoErrors(errors);
+		return Object.keys(errors).length === 0;
+	};
+
+	const validateMinLength = (password) => {
+		return password.length >= 8;
+	};
+
+	const validateLowercase = (password) => {
+		return /[a-z]/.test(password);
+	};
+
+	const validateUppercase = (password) => {
+		return /[A-Z]/.test(password);
+	};
+
+	const validateSymbol = (password) => {
+		return /[#?!@$%^&*-]/.test(password);
+	};
+
+	const validatePassword = () => {
+		let errors = {};
+
+		if (!data.password) {
+			errors.password = "password is required";
+		} else {
+			if (!validateMinLength(data.password)) {
+				errors.password = "password must be at least 8 characters";
+			} else if (!validateLowercase(data.password)) {
+				errors.password =
+					"password must contain at least one lowercase";
+			} else if (!validateUppercase(data.password)) {
+				errors.password =
+					"password must contain at least one uppercase";
+			} else if (!validateSymbol(data.password)) {
+				errors.password = "password must contain at least one symbol";
+			}
+		}
+
+		if (data.password !== data.password_confirmation) {
+			errors.password_confirmation = "passwords do not match";
+		}
+
+		setPasswordErrors(errors);
+		return Object.keys(errors).length === 0;
+	};
+
 	const onChange = (key, value) => {
 		setData({ ...data, [key]: value });
+
+		if (personalInfoErrors[key] || passwordErrors[key]) {
+			if (key in personalInfoErrors) {
+				setPersonalInfoErrors({
+					...personalInfoErrors,
+					[key]: undefined,
+				});
+			}
+			if (key in passwordErrors) {
+				setPasswordErrors({ ...passwordErrors, [key]: undefined });
+			}
+		}
 	};
 
 	const takePhoto = async () => {
@@ -131,112 +199,10 @@ const RegisterScreen = () => {
 		console.error(error);
 	}, []);
 
-	const validatePassword = () => {
-		setIsValidPassword(true);
-		setInvalidMessage("");
-		setInvalidMessageTitle("");
-
-		const passwordRegex =
-			/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-
-		if (!data.password.length) {
-			setIsValidPassword(false);
-			setInvalidMessageTitle("please fill in all the fields");
-		}
-
-		if (data.password.length && !passwordRegex.test(data.password)) {
-			setIsValidPassword(false);
-			setInvalidMessageTitle("password should contain");
-			setInvalidMessage(
-				"• 9-15 characters\n• at least one uppercase letter\n• at least one lowercase letter\n• at least one special character\n• at least one number"
-			);
-			return;
-		}
-
-		if (
-			data.password.length &&
-			data.password_confirmation.length &&
-			data.password !== data.password_confirmation
-		) {
-			setIsValidPassword(false);
-			setInvalidMessageTitle("passwords do not match");
-			return;
-		}
-	};
-
 	const onPressNext = () => {
-		if (activePage === 1) {
-			if (
-				!data.first_name.length ||
-				!data.last_name.length ||
-				!data.email.length ||
-				!data.phone.length
-			) {
-				Toast.show({
-					type: "customErrorToast",
-					text1: "please fill in all the fields",
-					position: "bottom",
-					bottomOffset: 120,
-				});
-				return;
-			}
-		}
-
-		if (activePage === 2) {
-			if (!isValidPassword) {
-				Toast.show({
-					type: "customErrorToast",
-					text1: invalidMessageTitle,
-					text2: invalidMessage,
-					position: "bottom",
-					bottomOffset: 120,
-				});
-
-				return;
-			}
-		}
-
-		if (activePage === 3) {
-			if (!data.profile_picture) {
-				Toast.show({
-					type: "customErrorToast",
-					text1: "profile picture is required",
-					position: "bottom",
-					bottomOffset: 120,
-				});
-				return;
-			}
-		}
-
-		if (activePage === 4) {
-			if (
-				!data.role.length ||
-				!data.job_title.length ||
-				!data.company_name.length
-			) {
-				Toast.show({
-					type: "customErrorToast",
-					text1: "please fill in the role, job title, and company name fields",
-					position: "bottom",
-					bottomOffset: 120,
-				});
-				return;
-			}
-		}
-
-		if (activePage === 5) {
-			if (!data.timezone.length || !data.language.length) {
-				Toast.show({
-					type: "customErrorToast",
-					text1: "please fill in all the fields",
-					position: "bottom",
-					bottomOffset: 120,
-				});
-				return;
-			}
-		}
-
-		if (activePage === 8) {
+		if (activePage === 1 && !validatePersonalInfo()) return;
+		if (activePage === 2 && !validatePassword()) return;
+		if (activePage === 6) {
 			if (agreeToTerms && agreeToPrivacyPolicy) {
 				console.log("created");
 			}
@@ -257,6 +223,7 @@ const RegisterScreen = () => {
 					<PersonalInfo
 						data={data}
 						onChange={onChange}
+						errors={personalInfoErrors}
 					/>
 				);
 			case 2:
@@ -264,6 +231,7 @@ const RegisterScreen = () => {
 					<CreatePassword
 						data={data}
 						onChange={onChange}
+						errors={passwordErrors}
 					/>
 				);
 			case 3:
@@ -283,21 +251,12 @@ const RegisterScreen = () => {
 				);
 			case 5:
 				return (
-					<Preferences
-						data={data}
-						onChange={onChange}
-					/>
-				);
-			case 6:
-				return (
 					<Notifications
 						data={data}
 						onChange={onChange}
 					/>
 				);
-			case 7:
-				return <ReadTerms />;
-			case 8:
+			case 6:
 				return (
 					<Agree
 						agreeToTerms={agreeToTerms}
@@ -332,10 +291,6 @@ const RegisterScreen = () => {
 	useEffect(() => {
 		showActivePage();
 	}, [activePage]);
-
-	useEffect(() => {
-		validatePassword();
-	}, [data.password, data.password_confirmation]);
 
 	if (cameraOpen && hasPermission && device !== null) {
 		return (
@@ -400,10 +355,10 @@ const RegisterScreen = () => {
 					data={data}
 					isNotFirst={activePage > 1}
 					disabled={
-						activePage === 8 &&
+						activePage === 6 &&
 						(!agreeToTerms || !agreeToPrivacyPolicy)
 					}
-					isLast={activePage === 8}
+					isLast={activePage === 6}
 					onPressBack={onPressBack}
 					onPressNext={onPressNext}
 					mutateRegisterUser={mutateRegisterUser}

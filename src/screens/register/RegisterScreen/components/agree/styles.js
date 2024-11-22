@@ -27,5 +27,6 @@ export const styles = StyleSheet.create({
 		lineHeight: 25,
 		fontWeight: "300",
 		color: Colors.ui_purple,
+		textDecorationLine: "underline",
 	},
 });

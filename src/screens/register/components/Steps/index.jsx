@@ -5,7 +5,7 @@ import { styles } from "./styles";
 const Steps = ({ page }) => {
 	function steps() {
 		let viewSteps = [];
-		for (let i = 0; i < 8; i++) {
+		for (let i = 0; i < 6; i++) {
 			viewSteps.push(
 				<View
 					key={i}

@@ -5,7 +5,7 @@ import { styles } from "./styles";
 import { styles as registerStyles } from "../../styles";
 import RNSTextInput from "../../../../../components/TextInput";
 
-function CreatePassword({ data, onChange }) {
+function CreatePassword({ data, onChange, errors }) {
 	return (
 		<ScrollView>
 			<View style={registerStyles.titleContainer}>
@@ -18,6 +18,7 @@ function CreatePassword({ data, onChange }) {
 				placeholder="create a strong password"
 				value={data.password}
 				onChangeText={(value) => onChange("password", value)}
+                error={errors.password}
 				style={registerStyles.textInput}
 				autoCapitalize="none"
 			/>
@@ -30,31 +31,10 @@ function CreatePassword({ data, onChange }) {
 				onChangeText={(value) =>
 					onChange("password_confirmation", value)
 				}
+                error={errors.password_confirmation}
 				style={registerStyles.textInput}
 				autoCapitalize="none"
 			/>
-
-			<View style={styles.passwordFooterBlock}>
-				{/* <View style={styles.rememberBlock}>
-					<CheckBox
-						center
-						title="remember me"
-						checked={data.remember}
-						onPress={() => onChange("remember", !data.remember)}
-						checkedColor={Colors.ui_purple}
-						uncheckedColor={Colors.ui_purple}
-						textStyle={styles.rememberText}
-						containerStyle={styles.rememberContainer}
-					/>
-				</View> */}
-				<View style={styles.forgotBlock}>
-					<TouchableOpacity
-					// onPress={onPressForgot}
-					>
-						<Text style={styles.forgotText}>forgot password?</Text>
-					</TouchableOpacity>
-				</View>
-			</View>
 		</ScrollView>
 	);
 }

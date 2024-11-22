@@ -30,6 +30,10 @@ const LoginScreen = () => {
 		password: "",
 	});
 	const [remember, setRemember] = useState(false);
+	const [errors, setErrors] = useState({
+		email: "",
+		password: "",
+	});
 
 	// mutation
 	const mutateLoginUser = useLoginUser({
@@ -48,12 +52,33 @@ const LoginScreen = () => {
 	});
 
 	// functions
+	const validateFields = () => {
+		let validationErrors = {};
+
+		if (!data.email.trim()) {
+			validationErrors.email = "email is required";
+		}
+
+		if (!data.password.trim()) {
+			validationErrors.password = "password is required";
+		}
+
+		setErrors(validationErrors);
+		return Object.keys(validationErrors).length === 0;
+	};
+
 	const handleLoginUser = () => {
-		mutateLoginUser.mutate(data);
+		if (validateFields()) {
+			mutateLoginUser.mutate(data);
+		}
 	};
 
 	const onChange = (key, value) => {
 		setData({ ...data, [key]: value });
+
+		if (key in errors) {
+			setErrors({ ...errors, [key]: "" });
+		}
 	};
 
 	const handleRemember = async () => {
@@ -107,6 +132,7 @@ const LoginScreen = () => {
 						placeholder="email"
 						value={data.email}
 						onChangeText={(value) => onChange("email", value)}
+						error={errors.email}
 						style={styles.textInput}
 						autoCapitalize="none"
 					/>
@@ -117,6 +143,7 @@ const LoginScreen = () => {
 						placeholder="password"
 						value={data.password}
 						onChangeText={(value) => onChange("password", value)}
+						error={errors.password}
 						style={styles.textInput}
 						autoCapitalize="none"
 					/>

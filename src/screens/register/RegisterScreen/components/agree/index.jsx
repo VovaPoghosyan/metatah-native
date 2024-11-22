@@ -4,6 +4,8 @@ import { CheckBox } from "react-native-elements";
 import { Colors } from "../../../../../constants";
 import { styles } from "./styles";
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native";
 
 function Agree({
 	agreeToTerms,
@@ -11,7 +13,8 @@ function Agree({
 	agreeToPrivacyPolicy,
 	setAgreeToPrivacyPolicy,
 }) {
-	
+	const navigation = useNavigation();
+
 	return (
 		<ScrollView>
 			<View style={{ marginBottom: 32 }}>
@@ -27,18 +30,37 @@ function Agree({
 					by creating an account,
 				</Text>
 				<Text style={styles.checkboxLabel}>you agree to our</Text>
+
 				<CheckBox
 					size={26}
-					title="terms and conditions and"
+					title={
+						<TouchableOpacity
+							onPress={() =>
+								navigation.navigate("TermsConditions")
+							}>
+							<Text style={styles.checkboxText}>
+								terms and conditions
+							</Text>
+						</TouchableOpacity>
+					}
 					checked={agreeToTerms}
 					onPress={() => setAgreeToTerms(!agreeToTerms)}
 					checkedColor={Colors.ui_purple}
 					uncheckedColor={Colors.ui_purple}
-					textStyle={styles.checkboxText}
 					containerStyle={styles.checkboxContainer}
 				/>
+
 				<CheckBox
-					title="privacy policy"
+					title={
+						<TouchableOpacity
+							onPress={() =>
+								navigation.navigate("PrivacyPolicy")
+							}>
+							<Text style={styles.checkboxText}>
+								privacy policy
+							</Text>
+						</TouchableOpacity>
+					}
 					size={26}
 					checked={agreeToPrivacyPolicy}
 					onPress={() =>
@@ -46,7 +68,6 @@ function Agree({
 					}
 					checkedColor={Colors.ui_purple}
 					uncheckedColor={Colors.ui_purple}
-					textStyle={styles.checkboxText}
 					containerStyle={styles.checkboxContainer}
 				/>
 			</View>

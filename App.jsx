@@ -11,7 +11,7 @@ import Toast, { BaseToast, ErrorToast } from "react-native-toast-message";
 import { View, Text, AppState, Platform } from "react-native";
 import { Icon } from "react-native-elements";
 import { focusManager } from "@tanstack/react-query";
-import { Colors, publicRoutes } from "./src/constants";
+import { publicRoutes } from "./src/constants";
 import FlashMessage from "react-native-flash-message";
 import FooterMenu from "./src/components/FooterMenu";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -38,18 +38,7 @@ const queryClient = new QueryClient({
 
 			Toast.show({
 				type: "error",
-				text1: "API Error",
-				text2: errorMessage,
-				text1Style: {
-					fontSize: 20,
-					fontWeight: "400",
-					color: Colors.ui_purple,
-				},
-				text2Style: {
-					fontSize: 16,
-					fontWeight: "400",
-					color: Colors.ui_purple,
-				},
+				text1: errorMessage,
 			});
 		},
 	}),

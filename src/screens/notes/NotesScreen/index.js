@@ -10,6 +10,7 @@ import Background from "../../../components/Background";
 import Spinner from "react-native-loading-spinner-overlay";
 import Layout from "../../../layouts/Layout";
 import { useLogoutUser } from "../../../state/hooks/mutations/user/logoutUser";
+import Toast from "react-native-toast-message";
 
 function NotesScreen() {
 	// useNavigation
@@ -52,10 +53,9 @@ function NotesScreen() {
 			console.log("User logged out successfully");
 		},
 		onError: (error) => {
-			showMessage({
-				message: error.response.data.message,
-				type: "danger",
-				floating: true,
+			Toast.show({
+				type: "error",
+				text1: error.response.data.message,
 			});
 		},
 	});

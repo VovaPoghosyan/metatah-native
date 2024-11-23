@@ -11,6 +11,7 @@ import Notes from "../../../components/Notes";
 import Background from "../../../components/Background";
 import Spinner from "react-native-loading-spinner-overlay";
 import Layout from "../../../layouts/Layout";
+import Toast from "react-native-toast-message";
 
 function AddOrEditNoteScreen() {
 	// useNavigation
@@ -61,10 +62,9 @@ function AddOrEditNoteScreen() {
 			console.log(data);
 		},
 		onError: (error) => {
-			showMessage({
-				message: error.response.data.message,
-				type: "danger",
-				floating: true,
+			Toast.show({
+				type: "error",
+				text1: error.response.data.message,
 			});
 		},
 	});
@@ -75,10 +75,9 @@ function AddOrEditNoteScreen() {
 			console.log(data);
 		},
 		onError: (error) => {
-			showMessage({
-				message: error.response.data.message,
-				type: "danger",
-				floating: true,
+			Toast.show({
+				type: "error",
+				text1: error.response.data.message,
 			});
 		},
 	});

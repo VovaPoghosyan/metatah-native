@@ -29,7 +29,6 @@ const TodoScreen = () => {
 
 		const formattedDate = `${year}-${month}-${day}`;
 
-		console.log("formattedDate", formattedDate);
 		return formattedDate;
 	};
 

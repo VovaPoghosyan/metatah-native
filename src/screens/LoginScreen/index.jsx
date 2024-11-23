@@ -6,7 +6,6 @@ import { Colors } from "../../constants";
 import { Button } from "../../components/Buttons/Button";
 import { CheckBox } from "@rneui/themed";
 import { useLoginUser } from "../../state/hooks/mutations/user/loginUser";
-import { showMessage } from "react-native-flash-message";
 import {
 	getUserLoginData,
 	getCheckStatus,
@@ -19,6 +18,7 @@ import Spinner from "react-native-loading-spinner-overlay";
 import RNSTextInput from "../../components/TextInput";
 import globalStyles from "../../assets/globalStyles";
 import Background from "../../components/Background";
+import Toast from "react-native-toast-message";
 
 const LoginScreen = () => {
 	// useNavigation
@@ -43,10 +43,9 @@ const LoginScreen = () => {
 			console.log("User logged in successfully");
 		},
 		onError: (error) => {
-			showMessage({
-				message: error.response.data.message,
-				type: "danger",
-				floating: true,
+			Toast.show({
+				type: "error",
+				text1: error.response.data.message,
 			});
 		},
 	});

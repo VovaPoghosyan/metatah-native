@@ -16,6 +16,7 @@ import Background from "../../../components/Background";
 import globalStyles from "../../../assets/globalStyles";
 import Spinner from "react-native-loading-spinner-overlay";
 import Layout from "../../../layouts/Layout";
+import Toast from "react-native-toast-message";
 
 function AddOrEditGoalScreen() {
 	// useNavigation
@@ -100,10 +101,9 @@ function AddOrEditGoalScreen() {
 			console.log(data);
 		},
 		onError: (error) => {
-			showMessage({
-				message: error.response.data.message,
-				type: "danger",
-				floating: true,
+			Toast.show({
+				type: "error",
+				text1: error.response.data.message,
 			});
 		},
 	});
@@ -114,10 +114,9 @@ function AddOrEditGoalScreen() {
 			console.log(data);
 		},
 		onError: (error) => {
-			showMessage({
-				message: error.response.data.message,
-				type: "danger",
-				floating: true,
+			Toast.show({
+				type: "error",
+				text1: error.response.data.message,
 			});
 		},
 	});

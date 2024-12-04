@@ -70,12 +70,12 @@ const Phone = ({ data, error, onChange }) => {
 
 			<View style={{ flex: 1 }}>
 				<RNSTextInput
-					name="phone_number"
+					name="phone"
 					type="number"
 					keyboardType="phone-pad"
 					placeholder="phone number"
-					value={data.phone_number}
-					onChangeText={(value) => onChange("phone_number", value)}
+					value={data.phone}
+					onChangeText={(value) => onChange("phone", value)}
 					error={error}
 					style={registerStyles.textInput}
 				/>

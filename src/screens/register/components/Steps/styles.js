@@ -19,6 +19,6 @@ export const styles = StyleSheet.create({
 	},
 
 	passive: {
-		backgroundColor: "#BDB2C3",
+		backgroundColor: Colors.ui_purple_gray,
 	},
 });

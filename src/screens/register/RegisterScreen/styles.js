@@ -21,7 +21,6 @@ export const styles = StyleSheet.create({
 		fontSize: 24,
 		fontWeight: "300",
 		color: Colors.ui_purple,
-		// fontFamily: Fonts.antipasto,
 	},
 
 	titleBold: {

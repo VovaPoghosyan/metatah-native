@@ -20,7 +20,10 @@ const Background = ({ imageName }) => {
 		<View style={styles.background}>
 			<Image
 				source={source}
-				style={{ ...styles.image, top: imageName === "bg-top" ? 0 : "auto" }}
+				style={{
+					...styles.image,
+					top: imageName === "bg-top" ? 0 : "auto",
+				}}
 				resizeMode="cover"
 			/>
 		</View>

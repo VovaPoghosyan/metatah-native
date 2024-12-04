@@ -29,7 +29,7 @@ const RegisterScreen = () => {
 		last_name: "",
 		email: "",
 		country_code: "+374",
-		phone_number: "",
+		phone: "",
 		password: "",
 		password_confirmation: "",
 		profile_picture: undefined,
@@ -71,8 +71,8 @@ const RegisterScreen = () => {
 		if (!data.first_name.trim())
 			errors.first_name = "first name is required";
 		if (!data.last_name.trim()) errors.last_name = "last name is required";
-		if (data.phone_number && !/^\d+$/.test(data.phone_number)) {
-			errors.phone_number = "phone must contain only numbers";
+		if (data.phone && !/^\d+$/.test(data.phone)) {
+			errors.phone = "phone must contain only numbers";
 		}
 		if (!data.email.trim()) {
 			errors.email = "email is required";
@@ -211,7 +211,7 @@ const RegisterScreen = () => {
 					last_name: data.last_name,
 					email: data.email,
 					country_code: data.country_code,
-					phone_number: data.phone_number,
+					phone: data.phone,
 				},
 				step: "one",
 			});
@@ -290,6 +290,7 @@ const RegisterScreen = () => {
 						data={data}
 						openCamera={() => setCameraOpen(true)}
 						chooseImage={chooseImage}
+						errors={profilePictureErrors}
 					/>
 				);
 			case 4:
@@ -324,7 +325,7 @@ const RegisterScreen = () => {
 	// useMutation
 	const mutateRegisterUser = useRegisterUser({
 		onSuccess: ({ data }) => {
-			data?.user && setUserId(data.user.id);
+			data?.data?.user?.id && setUserId(data.data.user.id);
 			data?.token
 				? navigation.navigate("AboutWelcome")
 				: setActivePage((prev) => prev + 1);

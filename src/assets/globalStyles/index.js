@@ -6,7 +6,7 @@ const globalStyles = StyleSheet.create({
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
-		fontFamily: "antipasto",
+		fontFamily: "Mardoto-Regular",
 	},
 
 	container: {
@@ -15,14 +15,14 @@ const globalStyles = StyleSheet.create({
 		padding: 20,
 		justifyContent: "center",
 		alignItems: "center",
-		fontFamily: "antipasto",
+		fontFamily: "Mardoto-Regular",
 	},
 
 	text: {
 		fontSize: 24,
 		fontWeight: "400",
 		color: "white",
-		fontFamily: "antipasto",
+		fontFamily: "Mardoto-Regular",
 		marginTop: 10,
 	},
 

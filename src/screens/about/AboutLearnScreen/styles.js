@@ -15,7 +15,8 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 50,
     color: 'white',
-    fontFamily: 'antipasto',
+    fontWeight: 700,
+    fontFamily: 'Mardoto-Bold',
   },
 
   descriptionContainer: {

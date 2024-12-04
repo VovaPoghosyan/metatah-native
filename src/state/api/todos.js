@@ -1,6 +1,6 @@
-import { API_URL } from "../utils/constants";
 import axios from "axios";
 import authHeader from "../helpers/auth-header";
+import { API_URL } from "../utils/constants";
 
 export const getAllTodos = async () => {
 	try {
@@ -51,6 +51,19 @@ export const editTodo = async (payload) => {
 
 		return data;
 	} catch (error) {
+		throw error;
+	}
+};
+
+export const deleteTodo = async (id) => {
+	try {
+		const response = await axios.delete(`${API_URL}/todos/${id}`, {
+			headers: await authHeader(),
+		});
+
+		return response;
+	} catch (error) {
+		console.error(error.response.data.message);
 		throw error;
 	}
 };

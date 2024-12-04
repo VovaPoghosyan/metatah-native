@@ -54,3 +54,16 @@ export const editGoal = async (payload) => {
 		throw error;
 	}
 };
+
+export const deleteGoal = async (id) => {
+	try {
+		const response = await axios.delete(`${API_URL}/goals/${id}`, {
+			headers: await authHeader(),
+		});
+
+		return response;
+	} catch (error) {
+		console.error(error.response.data.message);
+		throw error;
+	}
+};

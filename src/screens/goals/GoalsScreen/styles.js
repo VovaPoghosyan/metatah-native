@@ -58,4 +58,15 @@ export const styles = StyleSheet.create({
 		fontWeight: "400",
 		color: Colors.ui_purple,
 	},
+
+	createBlock: {
+		marginVertical: 24,
+	},
+
+	textCreate: {
+		fontSize: 24,
+		fontWeight: "400",
+		textAlign: "center",
+		color: Colors.ui_white,
+	},
 });

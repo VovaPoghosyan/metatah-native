@@ -9,6 +9,13 @@ export const styles = StyleSheet.create({
 		borderColor: Colors.ui_light_blue,
 		paddingHorizontal: 16,
 		paddingVertical: 8,
+		overflow: "hidden",
+	},
+
+	taskBlockTitleBlock: {
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "space-between",
 	},
 
 	taskBlockTitle: {

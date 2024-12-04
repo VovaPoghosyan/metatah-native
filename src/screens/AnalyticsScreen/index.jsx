@@ -5,6 +5,7 @@ import PieChartComponent from "./components/PieChartComponent";
 import LineChartComponent from "./components/LineChartComponent";
 import Spinner from "react-native-loading-spinner-overlay";
 import Layout from "../../layouts/Layout";
+import { Colors } from "../../constants";
 
 const AnalyticsScreen = () => {
 	const { data, isLoading, isFetching } = useStatistics();
@@ -17,7 +18,7 @@ const AnalyticsScreen = () => {
 				<View style={{ flex: 1, paddingTop: 18 }}>
 					<Text
 						style={{
-							color: "white",
+							color: Colors.ui_purple,
 							fontSize: 32,
 							fontWeight: 700,
 							textAlign: "center",

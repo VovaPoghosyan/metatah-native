@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import { View, TouchableOpacity, Text, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
@@ -43,4 +43,4 @@ const TaskEmpty = (props) => {
 	);
 };
 
-export default memo(TaskEmpty);
+export default TaskEmpty;

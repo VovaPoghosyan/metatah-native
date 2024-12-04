@@ -120,7 +120,7 @@ const LoginScreen = () => {
 			<Spinner visible={mutateLoginUser.isPending} />
 			<View style={globalStyles.container}>
 				<Background imageName="mr-bg" />
-				<ScrollView>
+				<View style={{ flex: 1, width: "100%" }}>
 					<View style={styles.titleContainer}>
 						<Text style={styles.title}>log in</Text>
 					</View>
@@ -181,7 +181,7 @@ const LoginScreen = () => {
 					</View>
 					<View style={styles.anotherOption}>
 						<Text style={styles.anotherOptionText}>
-							Already have an account?
+							don't have an account?
 						</Text>
 
 						<TouchableOpacity
@@ -191,7 +191,7 @@ const LoginScreen = () => {
 							</Text>
 						</TouchableOpacity>
 					</View>
-				</ScrollView>
+				</View>
 			</View>
 		</View>
 	);

@@ -58,7 +58,7 @@ function PersonalInfo({ data, onChange, errors }) {
 
 			<Phone
 				data={data}
-				error={errors.phone_number}
+				error={errors.phone}
 				onChange={onChange}
 			/>
 

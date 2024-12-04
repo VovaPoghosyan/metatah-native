@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { Agenda } from "react-native-calendars";
 import { useTodos } from "../../../state/hooks/query/todos/useTodos";
+import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Colors } from "../../../constants";
 import { styles } from "./styles";
 import Background from "../../../components/Background";
 import CollapsibleTask from "../../../components/CollapsibleTask";
 import TaskEmpty from "../../../components/TaskEmpty";
-import Spinner from "react-native-loading-spinner-overlay";
 import Layout from "../../../layouts/Layout";
+import Loading from "../../../components/Loading";
 
 const TodoScreen = () => {
 	// useState
@@ -16,12 +18,18 @@ const TodoScreen = () => {
 	const [markedData, setMarkedData] = useState({});
 	const [defaultDay, setDefaultDay] = useState("");
 	const [convertedData, setConvertedData] = useState(null);
+	const [selectedDay, setSelectedDay] = useState(null);
+
+	// useNavigation
+	const navigation = useNavigation();
 
 	// useQuery
-	const { data, isLoading, isFetching } = useTodos();
+	const { data, isLoading, isFetching, isRefetching } = useTodos();
 
 	// functions
 	const getDate = () => {
+		if (selectedDay) return selectedDay;
+
 		const today = new Date();
 		const year = today.getFullYear();
 		const month = String(today.getMonth() + 1).padStart(2, "0");
@@ -33,6 +41,7 @@ const TodoScreen = () => {
 	};
 
 	const handleDayPress = (day) => {
+		setSelectedDay(day.dateString);
 		setItems({
 			[day.dateString]: convertedData[day.dateString]
 				? [convertedData[day.dateString]]
@@ -65,6 +74,15 @@ const TodoScreen = () => {
 		});
 
 		return result;
+	};
+
+	const hasData = () => {
+		return (
+			items &&
+			Object.keys(items).some(
+				(date) => Array.isArray(items[date]) && items[date].length > 0
+			)
+		);
 	};
 
 	// useEffect
@@ -101,8 +119,8 @@ const TodoScreen = () => {
 	return (
 		<Layout>
 			<Background imageName="mr-bg" />
-			<View style={{ flex: 1 }}>
-				<Spinner visible={isLoading || isFetching} />
+			<View style={{ flex: 1, position: "relative" }}>
+				{(isLoading || isFetching || isRefetching) && <Loading />}
 				<Agenda
 					showClosingKnob
 					selected={defaultDay}
@@ -133,6 +151,7 @@ const TodoScreen = () => {
 											notify: todo.notify,
 										}}
 										editScreen="AddOrEditTodo"
+										taskType="Todo"
 									/>
 								);
 							})}
@@ -145,6 +164,13 @@ const TodoScreen = () => {
 						</View>
 					)}
 				/>
+				{hasData() && (
+					<TouchableOpacity
+						style={styles.createBlock}
+						onPress={() => navigation.navigate("AddOrEditTodo")}>
+						<Text style={styles.textCreate}>create +</Text>
+					</TouchableOpacity>
+				)}
 			</View>
 		</Layout>
 	);

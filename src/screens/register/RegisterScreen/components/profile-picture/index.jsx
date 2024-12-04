@@ -84,6 +84,16 @@ function ProfilePicture({ data, openCamera, chooseImage }) {
 						</TouchableOpacity>
 					</View>
 				</View>
+				<View style={{ marginTop: 24 }}>
+					{/* {errors?.map((error) => (
+						<Text
+							style={{
+								color: Colors.ui_error,
+							}}>
+							{error}
+						</Text>
+					))} */}
+				</View>
 			</View>
 		</ScrollView>
 	);

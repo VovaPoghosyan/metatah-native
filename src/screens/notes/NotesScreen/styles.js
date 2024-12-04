@@ -5,9 +5,9 @@ export const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 	},
-    
-	goals: {
-        flex: 1,
+
+	notes: {
+		flex: 1,
 		width: "100%",
 		display: "flex",
 		flexDirection: "column",
@@ -28,27 +28,27 @@ export const styles = StyleSheet.create({
 		marginBottom: 10,
 	},
 
-	goalList: {
+	noteList: {
 		width: "100%",
 		display: "flex",
 		justifyContent: "space-between",
 		paddingHorizontal: 32,
 	},
 
-	goalBlock: {
+	noteBlock: {
 		backgroundColor: Colors.ui_lightGray,
 		borderRadius: 5,
 		minHeight: 74,
 		padding: 10,
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "center",
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "space-between",
 		marginVertical: 8,
 		borderWidth: 1,
 		borderColor: Colors.ui_dark_purple,
 	},
 
-	goalTitle: {
+	noteTitle: {
 		fontSize: 22,
 		textAlign: "center",
 		letterSpacing: 0.28,
@@ -69,5 +69,10 @@ export const styles = StyleSheet.create({
 		height: 40,
 		margin: 12,
 		borderWidth: 1,
+	},
+
+	taskContentIcon: {
+		width: 18,
+		height: 18,
 	},
 });

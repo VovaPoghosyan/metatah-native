@@ -20,7 +20,7 @@ export const Colors = {
 	ui_dark_green: "#1FB767",
 	ui_gray: "#D9D9D9",
 	ui_gray_2: "#C7C4C9",
-	ui_gray_bg: "#E1DEE0",
+	ui_gray_bg: "#F2F2F2",
 	ui_light_gray: "#E5E5E5",
 	ui_light_gray_2: "#E8E6E7",
 	ui_dark_gray: "#909090",
@@ -30,6 +30,7 @@ export const Colors = {
 	ui_pink: "#B5179E",
 	ui_light_green: "#63D5DE",
 	ui_error: "#A22116",
+	ui_purple_gray: "#BDB2C3",
 
 	// background
 	ui_main_bg: "#282560",

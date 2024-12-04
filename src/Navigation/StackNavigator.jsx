@@ -39,25 +39,38 @@ import PrivacyPolicy from "../screens/termsAndPrivacy/privacyPolicy";
 import NotesScreen from "../screens/notes/NotesScreen";
 import AddOrEditNoteScreen from "../screens/notes/AddOrEditNoteScreen";
 import AnalyticsScreen from "../screens/AnalyticsScreen";
-import { Colors } from "../constants";
+import { Colors, publicRoutes } from "../constants";
+import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { Image } from "react-native";
 
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
+  const navigation = useNavigation();
+
   return (
     <Stack.Navigator
       initialRouteName="CalendarScreen"
-      screenOptions={{
+      screenOptions={({ route }) => ({
         headerStyle: {
           backgroundColor: Colors.ui_light_purple,
         },
-        headerTintColor: Colors.ui_white,
+        headerTintColor: Colors.ui_gray_bg,
         headerTitleStyle: {
           fontWeight: 'bold',
           fontSize: 20,
         },
         headerBackTitle: 'Back',
-      }}
+        headerRight: !publicRoutes.includes(route.name) ? () => (
+          <TouchableOpacity onPress={() => navigation.navigate("AboutLearn")}>
+            <Image
+              source={require('../assets/icon/user.png')}
+              style={{ width: 24, height: 24, marginRight: 24 }}
+            />
+          </TouchableOpacity>
+        ) : null,
+      })}
     >
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />

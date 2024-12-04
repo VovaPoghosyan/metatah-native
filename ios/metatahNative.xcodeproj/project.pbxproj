@@ -35,6 +35,8 @@
 		8BB67C2851F145709C957A0C /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6C71ABBABBB4438A1565C3B /* EvilIcons.ttf */; };
 		A1407766552E99900C9D0FF7 /* libPods-metatahNative-metatahNativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C67A60AB36BB3AAD38D2586F /* libPods-metatahNative-metatahNativeTests.a */; };
 		B02507F42CF1107A00DFB136 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B02507F32CF1107A00DFB136 /* PrivacyInfo.xcprivacy */; };
+		B02507F62CF8B73A00DFB136 /* Mardoto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B02507F52CF8B73A00DFB136 /* Mardoto-Regular.ttf */; };
+		B02507F82CF9D1B600DFB136 /* Mardoto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B02507F72CF9D1B600DFB136 /* Mardoto-Bold.ttf */; };
 		B1DE8999847848AF9C567BD1 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A7F06B0C9434B7BBAA3F7CD /* Ionicons.ttf */; };
 		C359D05537B643C4866DD163 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C349646ED91846768571CC1C /* MaterialIcons.ttf */; };
 		DE95F5754B1140E0A9121E3D /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58463290E93D49C0992BCFBC /* Entypo.ttf */; };
@@ -81,6 +83,8 @@
 		8A3A02777EFD4162BB97EC3B /* antipasto_extralight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = antipasto_extralight.ttf; path = ../src/assets/fonts/antipasto_extralight.ttf; sourceTree = "<group>"; };
 		9C3A9AFD86F37D8B87AF589F /* Pods-metatahNative-metatahNativeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-metatahNative-metatahNativeTests.debug.xcconfig"; path = "Target Support Files/Pods-metatahNative-metatahNativeTests/Pods-metatahNative-metatahNativeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B02507F32CF1107A00DFB136 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		B02507F52CF8B73A00DFB136 /* Mardoto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mardoto-Regular.ttf"; sourceTree = "<group>"; };
+		B02507F72CF9D1B600DFB136 /* Mardoto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mardoto-Bold.ttf"; sourceTree = "<group>"; };
 		B24DCA3CAD3F4AF88B149A7C /* antipasto_thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = antipasto_thin.ttf; path = ../src/assets/fonts/antipasto_thin.ttf; sourceTree = "<group>"; };
 		BC38D3D9BC2D42FD813FC338 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = ../src/assets/fonts/FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
 		C1BF6EDD44DD49C399AADCA0 /* antipasto_light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = antipasto_light.ttf; path = ../src/assets/fonts/antipasto_light.ttf; sourceTree = "<group>"; };
@@ -215,6 +219,8 @@
 				4A7F06B0C9434B7BBAA3F7CD /* Ionicons.ttf */,
 				887572A0FB6F44069D9E53F3 /* MaterialCommunityIcons.ttf */,
 				C349646ED91846768571CC1C /* MaterialIcons.ttf */,
+				B02507F52CF8B73A00DFB136 /* Mardoto-Regular.ttf */,
+				B02507F72CF9D1B600DFB136 /* Mardoto-Bold.ttf */,
 				48E3E2E1C39D48A8A6D7DCA2 /* Octicons.ttf */,
 				FA42AC59D3514DBB87AFD7CF /* SimpleLineIcons.ttf */,
 				49E4FE5FF89C46EEBD665380 /* Zocial.ttf */,
@@ -330,6 +336,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				B02507F62CF8B73A00DFB136 /* Mardoto-Regular.ttf in Resources */,
 				7E3F31DAD75346D390BA0504 /* antipasto_bold.ttf in Resources */,
 				2363598AA2BE47B6A17706FC /* antipasto_demi_bold.ttf in Resources */,
 				440E316E8E4043A283A25C4E /* antipasto_extralight.ttf in Resources */,
@@ -349,6 +356,7 @@
 				191C003EA6B2461181A5619C /* Fontisto.ttf in Resources */,
 				FE08650FF0AC4DBD8B5887D5 /* Foundation.ttf in Resources */,
 				B1DE8999847848AF9C567BD1 /* Ionicons.ttf in Resources */,
+				B02507F82CF9D1B600DFB136 /* Mardoto-Bold.ttf in Resources */,
 				882C59675A2D48F0AE2419C4 /* MaterialCommunityIcons.ttf in Resources */,
 				B02507F42CF1107A00DFB136 /* PrivacyInfo.xcprivacy in Resources */,
 				C359D05537B643C4866DD163 /* MaterialIcons.ttf in Resources */,
@@ -713,10 +721,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
@@ -785,10 +790,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

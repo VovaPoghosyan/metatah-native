@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
 	anotherOptionText: {
 		fontSize: 20,
 		letterSpacing: 1,
-		color: Colors.ui_white,
+		color: Colors.ui_dark_gray,
 	},
 
 	anotherOptionLink: {

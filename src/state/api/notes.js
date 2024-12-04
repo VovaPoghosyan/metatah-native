@@ -54,3 +54,16 @@ export const editNote = async (payload) => {
 		throw error;
 	}
 };
+
+export const deleteNote = async (id) => {
+	try {
+		const response = await axios.delete(`${API_URL}/notes/${id}`, {
+			headers: await authHeader(),
+		});
+
+		return response;
+	} catch (error) {
+		console.error(error.response.data.message);
+		throw error;
+	}
+};

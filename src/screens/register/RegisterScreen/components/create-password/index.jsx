@@ -1,7 +1,4 @@
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { CheckBox } from "react-native-elements";
-import { Colors } from "../../../../../constants";
-import { styles } from "./styles";
+import { ScrollView, Text, View } from "react-native";
 import { styles as registerStyles } from "../../styles";
 import RNSTextInput from "../../../../../components/TextInput";
 

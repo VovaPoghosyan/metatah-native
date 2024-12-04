@@ -30,7 +30,7 @@ const AboutLearnScreen = () => {
 						<View style={styles.titleContainer}>
 							<Text style={styles.title}>
 								learn{" "}
-								<Text style={globalStyles.bold}>about </Text> us
+								<Text style={globalStyles.bold}>about </Text>us
 							</Text>
 						</View>
 						<View style={styles.descriptionContainer}>

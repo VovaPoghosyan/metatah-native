@@ -83,10 +83,14 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 		<string>antipasto.ttf</string>
+		<string>Mardoto-Regular.ttf</string>
+		<string>Mardoto-Bold.ttf</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) needs access to your Camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow access to the photo library for selecting images</string>
+	<key>API_URL</key>
+	<string>${API_URL}</string>
 </dict>
 </plist>

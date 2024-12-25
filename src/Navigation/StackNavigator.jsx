@@ -1,5 +1,8 @@
-import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Colors, publicRoutes } from "../constants";
+import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { Image } from "react-native";
 
 // Import Screens
 import HomeScreen from '../screens/HomeScreen';
@@ -39,10 +42,7 @@ import PrivacyPolicy from "../screens/termsAndPrivacy/privacyPolicy";
 import NotesScreen from "../screens/notes/NotesScreen";
 import AddOrEditNoteScreen from "../screens/notes/AddOrEditNoteScreen";
 import AnalyticsScreen from "../screens/AnalyticsScreen";
-import { Colors, publicRoutes } from "../constants";
-import { TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { Image } from "react-native";
+import ProfileScreen from "../screens/ProfileScreen"
 
 const Stack = createStackNavigator();
 
@@ -63,7 +63,7 @@ const StackNavigator = () => {
         },
         headerBackTitle: 'Back',
         headerRight: !publicRoutes.includes(route.name) ? () => (
-          <TouchableOpacity onPress={() => navigation.navigate("AboutLearn")}>
+          <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
             <Image
               source={require('../assets/icon/user.png')}
               style={{ width: 24, height: 24, marginRight: 24 }}
@@ -75,7 +75,7 @@ const StackNavigator = () => {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="AboutWelcome" component={AboutWelcomeScreen} options={{ title: 'Welcome' }} />
-        <Stack.Screen name="AboutLearn" component={AboutLearnScreen} options={{ title: 'Learn more' }} />
+        <Stack.Screen name="AboutLearn" component={AboutLearnScreen} options={{ title: 'About Metatah' }} />
         <Stack.Screen name="Notes" component={NotesScreen} />
         <Stack.Screen name="AddOrEditNote" component={AddOrEditNoteScreen} options={{ title: 'Note' }} />
         <Stack.Screen name="Calendar" component={CalendarScreen} />
@@ -109,6 +109,7 @@ const StackNavigator = () => {
         <Stack.Screen name="TermsConditions" component={TermsConditions} options={{ title: 'Terms & Conditions' }} />
         <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{ title: 'Privacy Policy' }} />
         <Stack.Screen name="Analytics" component={AnalyticsScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
     </Stack.Navigator>
   );
 };

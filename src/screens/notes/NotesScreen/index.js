@@ -5,7 +5,6 @@ import { useNavigation } from "@react-navigation/native";
 import { useUser } from "../../../state/hooks/query/user/useUser";
 import { useNotes } from "../../../state/hooks/query/notes/useNotes";
 import { useDeleteNote } from "../../../state/hooks/mutations/notes/deleteNote";
-import { useLogoutUser } from "../../../state/hooks/mutations/user/logoutUser";
 import { Button } from "../../../components/Buttons";
 import { styles } from "./styles";
 import Background from "../../../components/Background";
@@ -98,23 +97,6 @@ function NotesScreen() {
 		);
 	};
 
-	const logout = () => {
-		mutateLogoutUser.mutate();
-	};
-
-	const mutateLogoutUser = useLogoutUser({
-		onSuccess: () => {
-			navigation.navigate("Login");
-			console.log("User logged out successfully");
-		},
-		onError: (error) => {
-			Toast.show({
-				type: "error",
-				text1: error.response.data.message,
-			});
-		},
-	});
-
 	return (
 		<Layout>
 			<Background imageName="mr-bg" />
@@ -144,16 +126,6 @@ function NotesScreen() {
 						/>
 					</View>
 				</View>
-				<Button
-					title="log out"
-					buttonWidth={200}
-					borderWidth={0}
-					fontSize={20}
-					lineHeight={24}
-					marginTop={20}
-					type="primary"
-					onPress={logout}
-				/>
 			</View>
 		</Layout>
 	);

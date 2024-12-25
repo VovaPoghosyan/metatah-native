@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { Colors } from "../../constants";
@@ -90,7 +90,7 @@ const LoginScreen = () => {
 		const checkToken = async () => {
 			const token = await getToken();
 			if (token) {
-				navigation.navigate("AboutWelcome");
+				navigation.navigate("Calendar");
 			}
 		};
 

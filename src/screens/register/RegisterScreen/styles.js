@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Colors, Fonts, Window } from "../../../constants";
+import { Colors, Window } from "../../../constants";
 
 export const styles = StyleSheet.create({
 	registerScreen: {

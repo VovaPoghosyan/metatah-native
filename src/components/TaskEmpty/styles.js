@@ -20,7 +20,8 @@ export const styles = StyleSheet.create({
   content: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
+    position: 'relative',
   },
 
   image: {
@@ -30,6 +31,9 @@ export const styles = StyleSheet.create({
 
   textContent: {
     paddingBottom: 10,
+    zIndex: 9999,
+    position: 'absolute',
+    bottom: 0,
   },
 
   title: {

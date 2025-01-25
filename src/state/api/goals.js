@@ -4,7 +4,7 @@ import { API_URL } from "../utils/constants";
 
 export const getAllGoals = async () => {
 	try {
-		const { data } = await axios.get(`${API_URL}/goals`, {
+		const { data } = await axios.get(`${API_URL}/api/goals`, {
 			headers: await authHeader(),
 		});
 		console.log("Goals data:", data.data); // Log the response data
@@ -17,7 +17,7 @@ export const getAllGoals = async () => {
 
 export const getGoal = async (id) => {
 	try {
-		const { data } = await axios.get(`${API_URL}/goals/${id}`, {
+		const { data } = await axios.get(`${API_URL}/api/goals/${id}`, {
 			headers: await authHeader(),
 		});
 		console.log("Goal data:", data.data); // Log the response data
@@ -30,7 +30,7 @@ export const getGoal = async (id) => {
 
 export const createGoal = async (payload) => {
 	try {
-		const { data } = await axios.post(`${API_URL}/goals`, payload, {
+		const { data } = await axios.post(`${API_URL}/api/goals`, payload, {
 			headers: await authHeader(),
 		});
 		console.log("Goal data: ", data); // Log the response data

@@ -212,6 +212,9 @@ function AddOrEditGoalScreen() {
 							itemStyle={styles.goalTypeItem}
 						/>
 						<View style={styles.footer}>
+							<TouchableOpacity onPress={() => { }}>
+								<Text style={styles.cancelText}>cancel</Text>
+							</TouchableOpacity>
 							{id ? (
 								<TouchableOpacity onPress={handleEditGoal}>
 									<Text style={styles.addText}>edit</Text>
@@ -221,10 +224,6 @@ function AddOrEditGoalScreen() {
 									<Text style={styles.addText}>add</Text>
 								</TouchableOpacity>
 							)}
-
-							<TouchableOpacity onPress={() => {}}>
-								<Text style={styles.cancelText}>cancel</Text>
-							</TouchableOpacity>
 						</View>
 					</ScrollView>
 				</View>

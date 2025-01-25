@@ -12,9 +12,9 @@ import { View, Text, AppState, Platform } from "react-native";
 import { Icon } from "react-native-elements";
 import { focusManager } from "@tanstack/react-query";
 import { publicRoutes } from "./src/constants";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import FlashMessage from "react-native-flash-message";
 import FooterMenu from "./src/components/FooterMenu";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const navigationRef = createRef();
 
@@ -121,7 +121,7 @@ const App = () => {
 	const checkToken = async () => {
 		const token = await getToken();
 
-		return token;
+		return token || null;
 	};
 
 	// useEffect
@@ -150,7 +150,7 @@ const App = () => {
 					}
 				}}
 				screenOptions={{
-					contentStyle: { paddingBottom: 120 }, // Applying padding to the screen
+					contentStyle: { paddingBottom: 120 },
 				}}>
 				<QueryClientProvider client={queryClient}>
 					{/* <ReactQueryDevtools initialIsOpen={false} /> */}

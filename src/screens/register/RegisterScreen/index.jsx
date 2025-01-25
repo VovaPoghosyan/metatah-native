@@ -55,12 +55,6 @@ const RegisterScreen = () => {
 	// useCameraDevice
 	const device = useCameraDevice("front");
 
-	useEffect(() => {
-		if (hasPermission === false) {
-			requestPermission();
-		}
-	}, [hasPermission]);
-
 	// useRef
 	const camera = useRef(null);
 
@@ -197,6 +191,12 @@ const RegisterScreen = () => {
 		});
 	};
 
+	const handleOpenCamera = () => {
+		if (hasPermission) {
+			setCameraOpen(true);
+		} else requestPermission().then(() => setCameraOpen(true));
+	}
+
 	const onError = useCallback((error) => {
 		console.log("Camera error!");
 		console.error(error);
@@ -232,7 +232,7 @@ const RegisterScreen = () => {
 		if (activePage === 3) {
 			const formData = new FormData();
 			formData.append("user_id", userId);
-			formData.append("profile_picture", data.profile_picture);
+			data.profile_picture && formData.append("profile_picture", data.profile_picture);
 
 			mutateRegisterUser.mutate({ data: formData, step: "three" });
 		}
@@ -288,7 +288,7 @@ const RegisterScreen = () => {
 				return (
 					<ProfilePicture
 						data={data}
-						openCamera={() => setCameraOpen(true)}
+						openCamera={handleOpenCamera}
 						chooseImage={chooseImage}
 						errors={profilePictureErrors}
 					/>
@@ -325,10 +325,13 @@ const RegisterScreen = () => {
 	// useMutation
 	const mutateRegisterUser = useRegisterUser({
 		onSuccess: ({ data }) => {
-			data?.data?.user?.id && setUserId(data.data.user.id);
-			data?.token
-				? navigation.navigate("AboutWelcome")
-				: setActivePage((prev) => prev + 1);
+			if (data?.data?.user?.id && !userId) {
+				setUserId(data.data.user.id);
+			}
+
+			data?.data?.token ?
+				navigation.navigate("AboutWelcome")
+				: setActivePage((prev) => prev + 1)
 		},
 		onError: (error) => {
 			switch (activePage) {
@@ -377,7 +380,7 @@ const RegisterScreen = () => {
 					device={device}
 					style={styles.absoluteFill}
 					onError={onError}
-					// onInitialized={onCameraInitialized}
+				// onInitialized={onCameraInitialized}
 				/>
 				<View style={styles.captureButtonContainer}>
 					<TouchableOpacity

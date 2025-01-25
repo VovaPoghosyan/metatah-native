@@ -4,7 +4,7 @@ import authHeader from "../helpers/auth-header";
 
 export const getStatistics = async () => {
 	try {
-		const { data } = await axios.get(`${API_URL}/statistics`, {
+		const { data } = await axios.get(`${API_URL}/api/statistics`, {
 			headers: await authHeader(),
 		});
 		console.log("Statistics data:", data.data); // Log the response data

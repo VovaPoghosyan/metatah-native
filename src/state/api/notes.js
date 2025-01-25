@@ -4,7 +4,7 @@ import authHeader from "../helpers/auth-header";
 
 export const getAllNotes = async () => {
 	try {
-		const { data } = await axios.get(`${API_URL}/notes`, {
+		const { data } = await axios.get(`${API_URL}/api/notes`, {
 			headers: await authHeader(),
 		});
 		console.log("Notes data:", data.data); // Log the response data
@@ -17,7 +17,7 @@ export const getAllNotes = async () => {
 
 export const getNote = async (id) => {
 	try {
-		const { data } = await axios.get(`${API_URL}/notes/${id}`, {
+		const { data } = await axios.get(`${API_URL}/api/notes/${id}`, {
 			headers: await authHeader(),
 		});
 		console.log("Note data:", data.data); // Log the response data
@@ -30,7 +30,7 @@ export const getNote = async (id) => {
 
 export const createNote = async (payload) => {
 	try {
-		const { data } = await axios.post(`${API_URL}/notes`, payload, {
+		const { data } = await axios.post(`${API_URL}/api/notes`, payload, {
 			headers: await authHeader(),
 		});
 		console.log("Note data: ", data); // Log the response data
@@ -44,7 +44,7 @@ export const createNote = async (payload) => {
 export const editNote = async (payload) => {
 	const { id, noteData } = payload;
 	try {
-		const { data } = await axios.put(`${API_URL}/notes/${id}`, noteData, {
+		const { data } = await axios.put(`${API_URL}/api/notes/${id}`, noteData, {
 			headers: await authHeader(),
 		});
 		console.log("Edited note data: ", data); // Log the response data
@@ -57,7 +57,7 @@ export const editNote = async (payload) => {
 
 export const deleteNote = async (id) => {
 	try {
-		const response = await axios.delete(`${API_URL}/notes/${id}`, {
+		const response = await axios.delete(`${API_URL}/api/notes/${id}`, {
 			headers: await authHeader(),
 		});
 

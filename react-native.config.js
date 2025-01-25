@@ -11,7 +11,4 @@ module.exports = {
       },
     },
     assets: ['./src/assets/fonts/'],
-    extra: {
-      API_URL: 'http://127.0.0.1:8000/api/',
-    },
   };

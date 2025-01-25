@@ -8,8 +8,22 @@ import {
 
 export const getUser = async () => {
 	try {
-		const { data } = await axios.get(`${API_URL}/user`, {
+		const { data } = await axios.get(`${API_URL}/api/user`, {
 			headers: await authHeader(),
+		});
+		console.log("User data:", data.data); // Log the response data
+		return data.data;
+	} catch (error) {
+		console.error("Error fetching user: ", error);
+		throw error;
+	}
+};
+
+export const updateUser = async (payload) => {
+	console.log("payload", payload);
+	try {
+		const { data } = await axios.post(`${API_URL}/api/update-profile`, payload, {
+			headers: await authHeader("multipart/form-data"),
 		});
 		console.log("User data:", data.data); // Log the response data
 		return data.data;
@@ -24,7 +38,7 @@ export const registerUser = async (payload) => {
 		const { step, data: requestData } = payload;
 
 		const response = await axios.post(
-			`${API_URL}/register/step-${step}`,
+			`${API_URL}/api/register/step-${step}`,
 			requestData,
 			{
 				headers: {
@@ -45,7 +59,7 @@ export const registerUser = async (payload) => {
 
 export const loginUser = async (payload) => {
 	try {
-		const { data } = await axios.post(`${API_URL}/login`, payload);
+		const { data } = await axios.post(`${API_URL}/api/login`, payload);
 		console.log("User data: ", data); // Log the response data
 
 		await setItemInStorage("token", data.data.token);
@@ -60,7 +74,7 @@ export const logoutUser = async () => {
 	const token = await authHeader();
 	try {
 		const { status } = await axios.post(
-			`${API_URL}/logout`,
+			`${API_URL}/api/logout`,
 			{},
 			{
 				headers: token,

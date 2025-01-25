@@ -35,7 +35,7 @@ const FooterMenu = ({ currentRoute }) => {
 		{
 			key: "analytics",
 			title: "analytics",
-			imageSrc: require("../../assets/icon/sun-1.png"),
+			imageSrc: require("../../assets/icon/analytics.png"),
 			navigatePageSrc: "Analytics",
 		},
 	];
@@ -51,7 +51,7 @@ const FooterMenu = ({ currentRoute }) => {
 							navigation.navigate(item.navigatePageSrc)
 						}>
 						<Image
-							style={styles.image}
+							style={{ ...styles.image, width: item.key === 'analytics' ? 50 : 28 }}
 							source={item.imageSrc}
 							resizeMode="contain"
 						/>

@@ -5,8 +5,27 @@ import { styles } from "./styles";
 import Background from "../Background";
 
 const TaskEmpty = (props) => {
+	// props
 	const { title } = props;
+
+	// useNavigation
 	const navigation = useNavigation();
+
+	// functions
+	const getIcon = () => {
+		switch (title) {
+			case 'task':
+				return require("../../assets/img/empty.png");
+			case 'goal':
+				return require("../../assets/img/goals-bg.png");
+			case 'to-do':
+				return require("../../assets/img/notes-bg.png");
+			case 'notes':
+				return require("../../assets/img/notes-bg.png");
+			default:
+				return require('../../assets/img/empty.png');
+		}
+	};
 
 	return (
 		<View style={styles.containerFluid}>
@@ -14,7 +33,7 @@ const TaskEmpty = (props) => {
 			<View style={styles.container}>
 				<View style={styles.content}>
 					<Image
-						source={require("../../assets/img/empty.png")}
+						source={getIcon()}
 						style={styles.image}
 						resizeMode="cover"
 					/>
@@ -29,8 +48,7 @@ const TaskEmpty = (props) => {
 							style={styles.next}
 							onPress={() =>
 								navigation.navigate(
-									`${
-										title === "goal" ? "AddOrEditGoal" : "AddOrEditTodo"
+									`${title === "goal" ? "AddOrEditGoal" : "AddOrEditTodo"
 									}`
 								)
 							}>

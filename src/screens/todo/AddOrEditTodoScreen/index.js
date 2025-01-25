@@ -180,6 +180,10 @@ function AddOrEditTodoScreen() {
 						/>
 
 						<View style={styles.footer}>
+							<TouchableOpacity
+								onPress={() => navigation.navigate("Todo")}>
+								<Text style={styles.cancelText}>cancel</Text>
+							</TouchableOpacity>
 							{id ? (
 								<TouchableOpacity onPress={handleEditTodo}>
 									<Text style={styles.addText}>edit</Text>
@@ -189,10 +193,6 @@ function AddOrEditTodoScreen() {
 									<Text style={styles.addText}>add</Text>
 								</TouchableOpacity>
 							)}
-							<TouchableOpacity
-								onPress={() => navigation.navigate("Todo")}>
-								<Text style={styles.cancelText}>cancel</Text>
-							</TouchableOpacity>
 						</View>
 					</ScrollView>
 				</>

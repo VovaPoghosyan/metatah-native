@@ -42,7 +42,8 @@ import PrivacyPolicy from "../screens/termsAndPrivacy/privacyPolicy";
 import NotesScreen from "../screens/notes/NotesScreen";
 import AddOrEditNoteScreen from "../screens/notes/AddOrEditNoteScreen";
 import AnalyticsScreen from "../screens/AnalyticsScreen";
-import ProfileScreen from "../screens/ProfileScreen"
+import ProfileScreen from "../screens/profile/ProfileScreen"
+import EditProfileScreen from '../screens/profile/EditProfileScreen';
 
 const Stack = createStackNavigator();
 
@@ -66,50 +67,51 @@ const StackNavigator = () => {
           <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
             <Image
               source={require('../assets/icon/user.png')}
-              style={{ width: 24, height: 24, marginRight: 24 }}
+              style={{ width: 28, height: 28, marginRight: 24 }}
             />
           </TouchableOpacity>
         ) : null,
       })}
     >
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="AboutWelcome" component={AboutWelcomeScreen} options={{ title: 'Welcome' }} />
-        <Stack.Screen name="AboutLearn" component={AboutLearnScreen} options={{ title: 'About Metatah' }} />
-        <Stack.Screen name="Notes" component={NotesScreen} />
-        <Stack.Screen name="AddOrEditNote" component={AddOrEditNoteScreen} options={{ title: 'Note' }} />
-        <Stack.Screen name="Calendar" component={CalendarScreen} />
-        <Stack.Screen name="Goals" component={GoalsScreen} />
-        <Stack.Screen name="Todo" component={TodoScreen} />
-        <Stack.Screen name="AddOrEditTodo" component={AddOrEditTodoScreen} options={{ title: 'Todo' }} />
-        <Stack.Screen name="AddOrEditGoal" component={AddOrEditGoalScreen} options={{ title: 'Goal' }} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Welcome" component={WelcomeScreen} />
-        <Stack.Screen name="CreateProfileStep1" component={CreateProfileStep1} />
-        <Stack.Screen name="Routines" component={RoutinesScreen} />
-        <Stack.Screen name="MorningRoutineStart" component={StartScreen} />
-        <Stack.Screen name="MorningRoutineFocus" component={FocusScreen} />
-        <Stack.Screen name="MorningRoutineFeel" component={FeelScreen} />
-        <Stack.Screen name="MorningRoutineSleep" component={SleepScreen} />
-        <Stack.Screen name="MorningRoutineStartDoing" component={StartDoingScreen} />
-        <Stack.Screen name="MorningRoutinePlans" component={PlansScreen} />
-        <Stack.Screen name="MorningRoutineGrateful" component={GratefulScreen} />
-        <Stack.Screen name="MorningRoutineGoals" component={MorningRoutineGoalsScreen} />
-        <Stack.Screen name="MorningRoutineList" component={ListScreen} />
-        <Stack.Screen name="MorningRoutineCompleted" component={CompletedScreen} />
-        <Stack.Screen name="EveningRoutineStart" component={EveningStartScreen} />
-        <Stack.Screen name="EveningRoutineProductive" component={ProductiveScreen} />
-        <Stack.Screen name="EveningRoutineDone" component={DoneListScreen} />
-        <Stack.Screen name="EveningRoutineHabits" component={HabitsScreen} />
-        <Stack.Screen name="EveningRoutineBiggestLesson" component={BiggestLesson} />
-        <Stack.Screen name="EveningRoutineSuccess" component={SuccessScreen} />
-        <Stack.Screen name="ChallengeOne" component={ChallengeScreenOne} />
-        <Stack.Screen name="ChallengeTwo" component={ChallengeScreenTwo} />
-        <Stack.Screen name="ChallengeThree" component={ChallengeScreenThree} />
-        <Stack.Screen name="TermsConditions" component={TermsConditions} options={{ title: 'Terms & Conditions' }} />
-        <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{ title: 'Privacy Policy' }} />
-        <Stack.Screen name="Analytics" component={AnalyticsScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen name="AboutWelcome" component={AboutWelcomeScreen} options={{ title: 'Welcome' }} />
+      <Stack.Screen name="AboutLearn" component={AboutLearnScreen} options={{ title: 'About Metatah' }} />
+      <Stack.Screen name="Notes" component={NotesScreen} />
+      <Stack.Screen name="AddOrEditNote" component={AddOrEditNoteScreen} options={{ title: 'Note' }} />
+      <Stack.Screen name="Calendar" component={CalendarScreen} />
+      <Stack.Screen name="Goals" component={GoalsScreen} />
+      <Stack.Screen name="Todo" component={TodoScreen} />
+      <Stack.Screen name="AddOrEditTodo" component={AddOrEditTodoScreen} options={{ title: 'Todo' }} />
+      <Stack.Screen name="AddOrEditGoal" component={AddOrEditGoalScreen} options={{ title: 'Goal' }} />
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Welcome" component={WelcomeScreen} />
+      <Stack.Screen name="CreateProfileStep1" component={CreateProfileStep1} />
+      <Stack.Screen name="Routines" component={RoutinesScreen} />
+      <Stack.Screen name="MorningRoutineStart" component={StartScreen} />
+      <Stack.Screen name="MorningRoutineFocus" component={FocusScreen} />
+      <Stack.Screen name="MorningRoutineFeel" component={FeelScreen} />
+      <Stack.Screen name="MorningRoutineSleep" component={SleepScreen} />
+      <Stack.Screen name="MorningRoutineStartDoing" component={StartDoingScreen} />
+      <Stack.Screen name="MorningRoutinePlans" component={PlansScreen} />
+      <Stack.Screen name="MorningRoutineGrateful" component={GratefulScreen} />
+      <Stack.Screen name="MorningRoutineGoals" component={MorningRoutineGoalsScreen} />
+      <Stack.Screen name="MorningRoutineList" component={ListScreen} />
+      <Stack.Screen name="MorningRoutineCompleted" component={CompletedScreen} />
+      <Stack.Screen name="EveningRoutineStart" component={EveningStartScreen} />
+      <Stack.Screen name="EveningRoutineProductive" component={ProductiveScreen} />
+      <Stack.Screen name="EveningRoutineDone" component={DoneListScreen} />
+      <Stack.Screen name="EveningRoutineHabits" component={HabitsScreen} />
+      <Stack.Screen name="EveningRoutineBiggestLesson" component={BiggestLesson} />
+      <Stack.Screen name="EveningRoutineSuccess" component={SuccessScreen} />
+      <Stack.Screen name="ChallengeOne" component={ChallengeScreenOne} />
+      <Stack.Screen name="ChallengeTwo" component={ChallengeScreenTwo} />
+      <Stack.Screen name="ChallengeThree" component={ChallengeScreenThree} />
+      <Stack.Screen name="TermsConditions" component={TermsConditions} options={{ title: 'Terms & Conditions' }} />
+      <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{ title: 'Privacy Policy' }} />
+      <Stack.Screen name="Analytics" component={AnalyticsScreen} />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="EditProfile" component={EditProfileScreen} />
     </Stack.Navigator>
   );
 };

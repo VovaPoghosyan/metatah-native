@@ -33,6 +33,19 @@ export const updateUser = async (payload) => {
 	}
 };
 
+export const updatePassword = async (payload) => {
+	console.log("payload", payload);
+	try {
+		const { data } = await axios.post(`${API_URL}/api/update-password`, payload, {
+			headers: await authHeader(),
+		});
+		return data;
+	} catch (error) {
+		console.error("Error fetching user: ", error);
+		throw error;
+	}
+};
+
 export const registerUser = async (payload) => {
 	try {
 		const { step, data: requestData } = payload;

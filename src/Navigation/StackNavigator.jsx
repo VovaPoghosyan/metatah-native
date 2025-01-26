@@ -44,6 +44,7 @@ import AddOrEditNoteScreen from "../screens/notes/AddOrEditNoteScreen";
 import AnalyticsScreen from "../screens/AnalyticsScreen";
 import ProfileScreen from "../screens/profile/ProfileScreen"
 import EditProfileScreen from '../screens/profile/EditProfileScreen';
+import ChangePasswordScreen from '../screens/profile/ChangePasswordScreen';
 
 const Stack = createStackNavigator();
 
@@ -112,6 +113,7 @@ const StackNavigator = () => {
       <Stack.Screen name="Analytics" component={AnalyticsScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+      <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} options={{ title: 'Change Password' }} />
     </Stack.Navigator>
   );
 };

@@ -21,8 +21,7 @@ const items = [
 		id: 2,
 		title: "change password",
 		icon: require("../../../assets/icon/locker.png"),
-		// TODO: changeable
-		route_name: "edit",
+		route_name: "ChangePassword",
 	},
 	{
 		id: 3,

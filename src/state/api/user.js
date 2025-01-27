@@ -20,7 +20,6 @@ export const getUser = async () => {
 };
 
 export const updateUser = async (payload) => {
-	console.log("payload", payload);
 	try {
 		const { data } = await axios.post(`${API_URL}/api/update-profile`, payload, {
 			headers: await authHeader("multipart/form-data"),
@@ -28,20 +27,19 @@ export const updateUser = async (payload) => {
 		console.log("User data:", data.data); // Log the response data
 		return data.data;
 	} catch (error) {
-		console.error("Error fetching user: ", error);
+		console.error(Object.values(error.response.data.data));
 		throw error;
 	}
 };
 
 export const updatePassword = async (payload) => {
-	console.log("payload", payload);
 	try {
-		const { data } = await axios.post(`${API_URL}/api/update-password`, payload, {
+		const response = await axios.post(`${API_URL}/api/update-password`, payload, {
 			headers: await authHeader(),
 		});
-		return data;
+		return response;
 	} catch (error) {
-		console.error("Error fetching user: ", error);
+		console.error(Object.values(error.response.data.data));
 		throw error;
 	}
 };

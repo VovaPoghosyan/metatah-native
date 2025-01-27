@@ -7,7 +7,7 @@ import {
 } from "@tanstack/react-query";
 import { getToken, removeToken } from "./src/state/helpers/auth";
 import { NavigationContainer } from "@react-navigation/native";
-import Toast, { BaseToast, ErrorToast } from "react-native-toast-message";
+import Toast, { BaseToast, ErrorToast, InfoToast } from "react-native-toast-message";
 import { View, Text, AppState, Platform } from "react-native";
 import { Icon } from "react-native-elements";
 import { focusManager } from "@tanstack/react-query";
@@ -65,6 +65,15 @@ const toastConfig = {
 			}}
 			text2Style={{
 				fontSize: 15,
+			}}
+		/>
+	),
+	info: (props) => (
+		<InfoToast
+			{...props}
+			text1Style={{
+				fontSize: 15,
+				fontWeight: "400",
 			}}
 		/>
 	),

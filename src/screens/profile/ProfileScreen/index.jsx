@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Toast from "react-native-toast-message";
 import Spinner from "react-native-loading-spinner-overlay";
 import globalStyles from "../../../assets/globalStyles";
 import Background from "../../../components/Background";

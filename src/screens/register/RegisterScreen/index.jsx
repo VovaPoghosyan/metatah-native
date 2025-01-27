@@ -14,6 +14,7 @@ import { useRegisterUser } from "../../../state/hooks/mutations/user/registerUse
 import { launchImageLibrary } from "react-native-image-picker";
 import { Colors } from "../../../constants";
 import { Icon } from "react-native-elements";
+import * as validators from "../../../state/utils/validation";
 import PersonalInfo from "./components/personal-info";
 import CreatePassword from "./components/create-password";
 import ProfessionalInfo from "./components/professional-info";
@@ -78,37 +79,21 @@ const RegisterScreen = () => {
 		return Object.keys(errors).length === 0;
 	};
 
-	const validateMinLength = (password) => {
-		return password.length >= 8;
-	};
-
-	const validateLowercase = (password) => {
-		return /[a-z]/.test(password);
-	};
-
-	const validateUppercase = (password) => {
-		return /[A-Z]/.test(password);
-	};
-
-	const validateSymbol = (password) => {
-		return /[#?!@$%^&*-]/.test(password);
-	};
-
 	const validatePassword = () => {
 		let errors = {};
 
 		if (!data.password) {
 			errors.password = "password is required";
 		} else {
-			if (!validateMinLength(data.password)) {
+			if (!validators.validateMinLength(data.password)) {
 				errors.password = "password must be at least 8 characters";
-			} else if (!validateLowercase(data.password)) {
+			} else if (!validators.validateLowercase(data.password)) {
 				errors.password =
 					"password must contain at least one lowercase";
-			} else if (!validateUppercase(data.password)) {
+			} else if (!validators.validateUppercase(data.password)) {
 				errors.password =
 					"password must contain at least one uppercase";
-			} else if (!validateSymbol(data.password)) {
+			} else if (!validators.validateSymbol(data.password)) {
 				errors.password = "password must contain at least one symbol";
 			}
 		}

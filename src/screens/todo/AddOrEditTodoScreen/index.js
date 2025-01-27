@@ -8,6 +8,7 @@ import { useEditTodo } from "../../../state/hooks/mutations/todos/editTodo";
 import { Icon } from "react-native-elements";
 import { Colors } from "../../../constants";
 import { styles } from "./styles";
+import Toast from "react-native-toast-message";
 import Notes from "../../../components/Notes";
 import TimeComponent from "../../../components/TimeComponent";
 import SelectPriority from "../../../components/SelectPriority";
@@ -16,7 +17,6 @@ import globalStyles from "../../../assets/globalStyles";
 import CalendarComponent from "../../../components/CalendarComponent";
 import Spinner from "react-native-loading-spinner-overlay";
 import Layout from "../../../layouts/Layout";
-import Toast from "react-native-toast-message";
 
 function AddOrEditTodoScreen() {
 	// useNavigation

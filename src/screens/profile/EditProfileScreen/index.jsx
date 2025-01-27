@@ -14,6 +14,7 @@ import Background from "../../../components/Background";
 import globalStyles from "../../../assets/globalStyles";
 import RNSTextInput from "../../../components/TextInput";
 import Phone from "../../register/RegisterScreen/components/phone";
+import Toast from "react-native-toast-message";
 
 const EditProfileScreen = () => {
 	// useCameraPermission
@@ -27,22 +28,26 @@ const EditProfileScreen = () => {
 
 	// useState
 	const [cameraOpen, setCameraOpen] = useState(false);
-
-	// useRef
-	const camera = useRef(null);
-
-	// useQuery
-	const { data, isLoading } = useUser();
-
-	// useState
 	const [userData, setUserData] = useState({
 		first_name: '',
 		last_name: '',
 		email: '',
 		country_code: '+374',
 		phone: '',
-		profile_picture: '',
 	});
+	const [errors, setErrors] = useState({
+		first_name: '',
+		last_name: '',
+		email: '',
+		country_code: '',
+		phone: '',
+	});
+
+	// useRef
+	const camera = useRef(null);
+
+	// useQuery
+	const { data, isLoading } = useUser();
 
 	// useEffect
 	useEffect(() => {
@@ -54,7 +59,6 @@ const EditProfileScreen = () => {
 				email: data.email,
 				country_code: data.country_code,
 				phone: data.phone,
-				// profile_picture: data.profile_picture,
 			})
 		}
 	}, [data])
@@ -62,13 +66,20 @@ const EditProfileScreen = () => {
 	// functions
 	const onChange = (key, value) => {
 		setUserData({ ...userData, [key]: value });
+
+		if (key in errors) {
+			setErrors({ ...errors, [key]: "" });
+		}
 	}
 
 	const saveUserData = () => {
 		const changedFields = hasChanged(data, userData);
 
 		if (Object.keys(changedFields).length === 0) {
-			console.log("No changes detected.");
+			Toast.show({
+				type: "info",
+				text1: "No changes detected",
+			});
 			return;
 		}
 
@@ -97,10 +108,7 @@ const EditProfileScreen = () => {
 			console.log("Updated successfully", data);
 		},
 		onError: (error) => {
-			Toast.show({
-				type: "error",
-				text1: error.response.data.message,
-			});
+			setErrors(error.response.data.data);
 		},
 	});
 
@@ -274,7 +282,7 @@ const EditProfileScreen = () => {
 								placeholder="first name*"
 								value={userData.first_name}
 								onChangeText={(value) => onChange("first_name", value)}
-								// error={errors.first_name}
+								error={errors.first_name}
 								style={styles.textInput}
 							/>
 
@@ -284,7 +292,7 @@ const EditProfileScreen = () => {
 								placeholder="last name*"
 								value={userData.last_name}
 								onChangeText={(value) => onChange("last_name", value)}
-								// error={errors.last_name}
+								error={errors.last_name}
 								style={styles.textInput}
 							/>
 
@@ -294,14 +302,14 @@ const EditProfileScreen = () => {
 								placeholder="email address*"
 								value={userData.email}
 								onChangeText={(value) => onChange("email", value)}
-								// error={errors.email}
+								error={errors.email}
 								autoCapitalize="none"
 								style={styles.textInput}
 							/>
 
 							<Phone
 								data={userData}
-								// error={errors.phone}
+								error={errors.phone}
 								onChange={onChange}
 							/>
 						</View>

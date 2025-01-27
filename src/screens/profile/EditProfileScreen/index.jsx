@@ -49,6 +49,10 @@ const EditProfileScreen = () => {
 	// useQuery
 	const { data, isLoading } = useUser();
 
+	useEffect(() => {
+		navigation.setParams({ hidePageFrame: false });
+	}, [])
+
 	// useEffect
 	useEffect(() => {
 		if (data) {
@@ -98,8 +102,14 @@ const EditProfileScreen = () => {
 
 	const handleEditProfilePicture = () => {
 		if (hasPermission) {
+			navigation.setParams({ hidePageFrame: true });
 			setCameraOpen(true);
-		} else requestPermission().then(() => setCameraOpen(true));
+		} else {
+			requestPermission().then(() => {
+				navigation.setParams({ hidePageFrame: true });
+				setCameraOpen(true);
+			});
+		}
 	}
 
 	const mutateUpdateUser = useUpdateUser({
@@ -130,6 +140,7 @@ const EditProfileScreen = () => {
 				});
 				console.log("Photo saved:", photo);
 
+				navigation.setParams({ hidePageFrame: false });
 				setCameraOpen(false);
 				setUserData({
 					...userData,
@@ -170,6 +181,7 @@ const EditProfileScreen = () => {
 					},
 				});
 
+				navigation.setParams({ hidePageFrame: false });
 				setCameraOpen(false);
 			}
 		});
@@ -180,6 +192,11 @@ const EditProfileScreen = () => {
 		console.error(error);
 	}, []);
 
+	const closeCamera = () => {
+		navigation.setParams({ hidePageFrame: false });
+		setCameraOpen(false);
+	}
+
 	if (cameraOpen && hasPermission && device !== null) {
 		return (
 			<>
@@ -188,10 +205,10 @@ const EditProfileScreen = () => {
 						zIndex: 2,
 						flexDirection: "row",
 						justifyContent: "flex-end",
-						paddingTop: 12,
-						paddingRight: 12,
+						paddingTop: 56,
+						paddingRight: 24,
 					}}>
-					<Pressable onPress={() => setCameraOpen(false)}>
+					<Pressable onPress={closeCamera}>
 						<Icon
 							name="close"
 							type="material"

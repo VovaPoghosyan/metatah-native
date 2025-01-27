@@ -55,6 +55,7 @@ const StackNavigator = () => {
     <Stack.Navigator
       initialRouteName="CalendarScreen"
       screenOptions={({ route }) => ({
+        headerShown: !route.params?.hidePageFrame,
         headerStyle: {
           backgroundColor: Colors.ui_light_purple,
         },
@@ -112,7 +113,7 @@ const StackNavigator = () => {
       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{ title: 'Privacy Policy' }} />
       <Stack.Screen name="Analytics" component={AnalyticsScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
-      <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+      <Stack.Screen name="EditProfile" component={EditProfileScreen} options={{ title: 'Edit Profile' }} />
       <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} options={{ title: 'Change Password' }} />
     </Stack.Navigator>
   );

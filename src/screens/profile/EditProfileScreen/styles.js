@@ -33,9 +33,10 @@ export const styles = StyleSheet.create({
 
 	editIcon: {
 		position: 'absolute',
-		bottom: -24,
+		bottom: -32,
 		left: '50%',
-		transform: [{ translateX: -12 }],
+		transform: [{ translateX: -20 }],
+		padding: 8
 	},
 
 	userName: {
@@ -91,10 +92,8 @@ export const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "center",
-		bottom: 20,
+		bottom: 40,
 		left: Window.width / 2 - 95,
-		backgroundColor: 'red',
-		zIndex: 9999
 	},
 
 	captureBorder: {

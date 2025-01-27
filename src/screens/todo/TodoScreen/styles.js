@@ -23,7 +23,6 @@ export const styles = StyleSheet.create({
 		justifyContent: "center",
 		borderRadius: 4,
 		marginBottom: 4,
-		backgroundColor: "red",
 	},
 
 	taskTitleText: {

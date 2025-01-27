@@ -11,8 +11,6 @@ export const styles = StyleSheet.create({
 		paddingBottom: 30,
 		position: "absolute",
 		bottom: 0,
-		zIndex: 1,
-		// backgroundColor: Colors.ui_light_purple,
 	},
 
 	container: {

@@ -42,7 +42,7 @@ const TaskEmpty = (props) => {
 							your {title} list is empty
 						</Text>
 						<Text style={styles.subtitle}>
-							press create to add tasks
+							press create to add {title}
 						</Text>
 						<TouchableOpacity
 							style={styles.next}

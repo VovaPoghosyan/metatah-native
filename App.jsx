@@ -150,11 +150,15 @@ const App = () => {
 				ref={navigationRef}
 				onStateChange={async (state) => {
 					const accessToken = await checkToken();
-					const routeName = state.routes[state.index].name;
+					const route = state.routes[state.index];
 
-					setCurrentRoute(routeName);
+					console.log(route, "++++", route.params?.hidePageFrame);
 
-					if (!publicRoutes.includes(routeName) && !accessToken) {
+					setCurrentRoute(route);
+
+					console.log("///", !publicRoutes.includes(currentRoute?.name) || !currentRoute?.params?.hidePageFrame)
+
+					if (!publicRoutes.includes(route.name) && !accessToken) {
 						navigationRef.current?.navigate("Login");
 					}
 				}}
@@ -164,7 +168,7 @@ const App = () => {
 				<QueryClientProvider client={queryClient}>
 					{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 					<StackNavigator />
-					{!publicRoutes.includes(currentRoute) && (
+					{!(!publicRoutes.includes(currentRoute?.name) && currentRoute?.params?.hidePageFrame) && (
 						<FooterMenu currentRoute={currentRoute} />
 					)}
 				</QueryClientProvider>

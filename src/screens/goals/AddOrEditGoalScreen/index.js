@@ -77,6 +77,13 @@ function AddOrEditGoalScreen() {
 		});
 	};
 
+	const onPressPeriodItem = (value) => {
+		setData((prevData) => ({
+			...prevData,
+			interval: prevData.interval === value ? "" : value,
+		}));
+	};
+
 	const handleCreateGoal = () => {
 		mutateCreateGoal.mutate(data);
 	};
@@ -167,12 +174,8 @@ function AddOrEditGoalScreen() {
 								endTime={data.endTime}
 								reminder={data.reminder}
 								onPressReminder={onPressReminder}
-								onPressWeekItem={(value) =>
-									onPressWeekItem(value)
-								}
-								onPressPeriodItem={(value) =>
-									onChangeData(value, "interval")
-								}
+								onPressWeekItem={onPressWeekItem}
+								onPressPeriodItem={onPressPeriodItem}
 								onChangeStartTime={(value) =>
 									onChangeData(value, "startTime")
 								}
